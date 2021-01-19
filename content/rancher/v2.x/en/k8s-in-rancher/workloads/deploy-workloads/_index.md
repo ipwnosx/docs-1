@@ -11,7 +11,7 @@ Deploy a workload to run an application in one or more containers.
 
 1. From the **Global** view, open the project that you want to deploy a workload to.
 
-1. 1. Click **Resources > Workloads.** (In versions prior to v2.3.0, click the **Workloads** tab.) From the **Workloads** view, click **Deploy**.
+1. 1. Click **Resources > Workloads.** From the **Workloads** view, click **Deploy**.
 
 1. Enter a **Name** for the workload.
 
@@ -35,7 +35,7 @@ Deploy a workload to run an application in one or more containers.
 
         Use this section to add storage for your workload. You can manually specify the volume that you want to add, use a persistent volume claim to dynamically create a volume for the workload, or read data for a volume to use from a file such as a [ConfigMap]({{<baseurl>}}/rancher/v2.x/en/k8s-in-rancher/configmaps/).
 
-        When you are deploying a Stateful Set, you should use a Volume Claim Template when using Persistent Volumes. This will ensure that Persistent Volumes are created dynamically when you scale your Stateful Set. This option is available in the UI as of Rancher v2.2.0.
+        When you are deploying a Stateful Set, you should use a Volume Claim Template when using Persistent Volumes. This will ensure that Persistent Volumes are created dynamically when you scale your Stateful Set.
 
     - **Scaling/Upgrade Policy**
 

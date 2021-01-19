@@ -1,11 +1,10 @@
 ---
 title: OPA Gatekeeper
-weight: 17
+weight: 16
 aliases:
  - /rancher/v2.x/en/cluster-admin/tools/opa-gatekeeper
- - /rancher/v2.x/en/opa-gatekeper/Open%20Policy%20Agent
+ - /rancher/v2.x/en/opa-gatekeeper/Open%20Policy%20Agent
 ---
-_Available as of v2.4.0_
 
 To ensure consistency and compliance, every organization needs the ability to define and enforce policies in its environment in an automated way. [OPA (Open Policy Agent)](https://www.openpolicyagent.org/) is a policy engine that facilitates policy-based control for cloud native environments. Rancher provides the ability to enable OPA Gatekeeper in Kubernetes clusters, and also installs a couple of built-in policy definitions, which are also called constraint templates. 
 
@@ -28,14 +27,11 @@ OPA Gatekeeper is made available via Rancher's Helm system chart, and it is inst
 
 # Enabling OPA Gatekeeper in a Cluster
 
-In Rancher v2.5, the OPA Gatekeeper application was improved. The Rancher v2.4 feature can't be upgraded to the new version in Rancher v2.5. If you installed OPA Gatekeeper in Rancher v2.4, you will need to uninstall OPA Gatekeeper and its CRDs from the old UI, then reinstall it in Rancher v2.5. To uninstall the CRDs run the following command in the kubectl console `kubectl delete crd configs.config.gatekeeper.sh constrainttemplates.templates.gatekeeper.sh`.
-
-{{% tabs %}}
-{{% tab "Rancher v2.5" %}}
+> In Rancher v2.5, the OPA Gatekeeper application was improved. The Rancher v2.4 feature can't be upgraded to the new version in Rancher v2.5. If you installed OPA Gatekeeper in Rancher v2.4, you will need to uninstall OPA Gatekeeper and its CRDs from the old UI, then reinstall it in Rancher v2.5. To uninstall the CRDs run the following command in the kubectl console `kubectl delete crd configs.config.gatekeeper.sh constrainttemplates.templates.gatekeeper.sh`.
 
 > **Prerequisite:** Only administrators and cluster owners can enable OPA Gatekeeper.
 
-OPA Gatekeeper can be installed from the new **Cluster Explorer** view in Rancher v2.5, or from the legacy cluster view.
+OPA Gatekeeper can be installed from the new **Cluster Explorer** view in Rancher v2.5, or from the cluster manager view.
 
 ### Enabling OPA Gatekeeper from Cluster Explorer
 
@@ -46,7 +42,7 @@ OPA Gatekeeper can be installed from the new **Cluster Explorer** view in Ranche
 
 **Result:** OPA Gatekeeper is deployed in your Kubernetes cluster.
 
-### Enabling OPA Gatekeeper from the Legacy Cluster View
+### Enabling OPA Gatekeeper from the Cluster Manager View
 
 1. Go to the cluster view in the Rancher UI.
 1. Click **Tools > OPA Gatekeeper.**
@@ -54,20 +50,6 @@ OPA Gatekeeper can be installed from the new **Cluster Explorer** view in Ranche
 
 **Result:** OPA Gatekeeper is deployed in your Kubernetes cluster.
 
-{{% /tab %}}
-{{% tab "Rancher v2.4" %}}
-
-> **Prerequisites:** 
-> 
-> - Only administrators and cluster owners can enable OPA Gatekeeper.
-> - The dashboard needs to be enabled using the `dashboard` feature flag. For more information, refer to the [section on enabling experimental features.]({{<baseurl>}}/rancher/v2.x/en/installation/options/feature-flags/)
-
-1. Navigate to the cluster's **Dashboard** view.
-1. On the left side menu, expand the cluster menu and click on **OPA Gatekeeper.**
-1. To install Gatekeeper with the default configuration, click on **Enable Gatekeeper (v0.1.0) with defaults.**
-1. To change any default configuration, click on **Customize Gatekeeper yaml configuration.**
-{{% /tab %}}
-{{% /tabs %}}
 
 # Constraint Templates
 

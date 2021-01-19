@@ -30,9 +30,6 @@ While Rancher comes out-of-the-box with a set of default user roles, you can als
 
 The steps to add custom roles differ depending on the version of Rancher.
 
-{{% tabs %}}
-{{% tab "Rancher v2.0.7+" %}}
-
 1.  From the **Global** view, select **Security > Roles** from the main menu.
 
 1.  Select a tab to determine the scope of the roles you're adding. The tabs are:
@@ -60,45 +57,7 @@ The steps to add custom roles differ depending on the version of Rancher.
 
 1.  Click **Create**.
 
-{{% /tab %}}
-{{% tab "Rancher prior to v2.0.7" %}}
-
-1.  From the **Global** view, select **Security > Roles** from the main menu.
-
-1.  Click **Add Role**.
-
-1.  **Name** the role.
-
-1.  Choose whether to set the role to a status of [locked]({{<baseurl>}}/rancher/v2.x/en/admin-settings/rbac/locked-roles/).
-
-    > **Note:** Locked roles cannot be assigned to users.
-
-1.  In the **Context** dropdown menu, choose the scope of the role assigned to the user. The contexts are:
-
-    - **All:** The user can use their assigned role regardless of context. This role is valid for assignment when adding/managing members to clusters or projects.
-
-    - **Cluster:** This role is valid for assignment when adding/managing members to _only_ clusters.
-
-    - **Project:** This role is valid for assignment when adding/managing members to _only_ projects.
-
-1.  Use the **Grant Resources** options to assign individual [Kubernetes API endpoints](https://kubernetes.io/docs/reference/) to the role.
-
-    > When viewing the resources associated with default roles created by Rancher, if there are multiple Kubernetes API resources on one line item, the resource will have `(Custom)` appended to it. These are not custom resources but just an indication that there are multiple Kubernetes API resources as one resource.
-    
-    > The Resource text field provides a method to search for pre-defined Kubernetes API resources, or enter a custom resource name for the grant. The pre-defined or `(Custom)` resource must be selected from the dropdown, after entering a resource name into this field.
-
-    You can also choose the individual cURL methods (`Create`, `Delete`, `Get`, etc.) available for use with each endpoint you assign.
-
-1.  Use the **Inherit from a Role** options to assign individual Rancher roles to your custom roles. Note: When a custom role inherits from a parent role, the parent role cannot be deleted until the child role is deleted.
-
-1.  Click **Create**.
-
-{{% /tab %}}
-{{% /tabs %}}
-
 ## Creating a Custom Global Role
-
-_Available as of v2.4.0_
 
 ### Creating a Custom Global Role that Copies Rules from an Existing Role
 
@@ -134,8 +93,6 @@ Custom global roles don't have to be based on existing roles. To create a custom
 
 ## Deleting a Custom Global Role
 
-_Available as of v2.4.0_
-
 When deleting a custom global role, all global role bindings with this custom role are deleted.
 
 If a user is only assigned one custom global role, and the role is deleted, the user would lose access to Rancher. For the user to regain access, an administrator would need to edit the user and apply new global permissions.
@@ -149,8 +106,6 @@ To delete a custom global role,
 3. Click **Delete.**
 
 ## Assigning a Custom Global Role to a Group
-
-_Available as of v2.4.0_
 
 If you have a group of individuals that need the same level of access in Rancher, it can save time to create a custom global role. When the role is assigned to a group, the users in the group have the appropriate level of access the first time they sign into Rancher.
 

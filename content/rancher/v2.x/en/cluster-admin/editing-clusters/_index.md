@@ -26,13 +26,13 @@ To edit your cluster, open the **Global** view, make sure the **Clusters** tab i
 
 In [clusters launched by RKE]({{<baseurl>}}/rancher/v2.x/en/cluster-provisioning/rke-clusters/), you can edit any of the remaining options that follow.
 
-Note that these options are not available for imported clusters or hosted Kubernetes clusters.
+Note that these options are not available for registered clusters or hosted Kubernetes clusters.
 
 Option | Description |
 ---------|----------|
  Kubernetes Version | The version of Kubernetes installed on each cluster node. For more detail, see [Upgrading Kubernetes]({{<baseurl>}}/rancher/v2.x/en/cluster-admin/upgrading-kubernetes). |
  Network Provider | The \container networking interface (CNI) that powers networking for your cluster.<br/><br/>**Note:** You can only choose this option while provisioning your cluster. It cannot be edited later. |
- Project Network Isolation | As of Rancher v2.0.7, if you're using the Canal network provider, you can choose whether to enable or disable inter-project communication. |
+ Project Network Isolation | If you're using the Canal network provider, you can choose whether to enable or disable inter-project communication. |
  Nginx Ingress | If you want to publish your applications in a high-availability configuration, and you're hosting your nodes with a cloud-provider that doesn't have a native load-balancing feature, enable this option to use Nginx ingress within the cluster. |
  Metrics Server Monitoring | Each cloud provider capable of launching a cluster using RKE can collect metrics and monitor for your cluster nodes. Enable this option to view your node metrics from your cloud provider's portal. |
  Pod Security Policy Support | Enables [pod security policies]({{<baseurl>}}/rancher/v2.x/en/admin-settings/pod-security-policies/) for the cluster. After enabling this option, choose a policy using the **Default Pod Security Policy** drop-down. |
@@ -53,13 +53,6 @@ Instead of using the Rancher UI to choose Kubernetes options for the cluster, ad
 For an example of RKE config file syntax, see the [RKE documentation]({{<baseurl>}}/rke/latest/en/example-yamls/).
 
 For the complete reference of configurable options for RKE Kubernetes clusters in YAML, see the [RKE documentation.]({{<baseurl>}}/rke/latest/en/config-options/)
-
-In Rancher v2.0.0-v2.2.x, the config file is identical to the  [cluster config file for the Rancher Kubernetes Engine]({{<baseurl>}}/rke/latest/en/config-options/), which is the tool Rancher uses to provision clusters. In Rancher v2.3.0, the RKE information is still included in the config file, but it is separated from other options, so that the RKE cluster config options are nested under the `rancher_kubernetes_engine_config` directive. For more information, see the [cluster configuration reference.]({{<baseurl>}}/rancher/v2.x/en/cluster-provisioning/rke-clusters/options)
-
->**Note:** In Rancher v2.0.5 and v2.0.6, the names of services in the Config File (YAML) should contain underscores only: `kube_api` and `kube_controller`.
-
-
-
 
 ### Updating ingress-nginx
 

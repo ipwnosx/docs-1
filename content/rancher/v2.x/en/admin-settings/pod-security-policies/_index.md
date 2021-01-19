@@ -36,8 +36,6 @@ Read more about Pod Security Policies in the [Kubernetes Documentation](https://
 
 # Default PSPs
 
-_Available as of v2.0.7_
-
 Rancher ships with two default Pod Security Policies (PSPs): the `restricted` and `unrestricted` policies.
 
 ### Restricted
@@ -73,7 +71,7 @@ We recommend adding PSPs during cluster and project creation instead of adding i
 
 2. Name the policy.
 
-3. Complete each section of the form. Refer to the [Kubernetes documentation]((https://kubernetes.io/docs/concepts/policy/pod-security-policy/)) for more information on what each policy does.
+3. Complete each section of the form. Refer to the [Kubernetes documentation](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) for more information on what each policy does.
 
 
 # Configuration

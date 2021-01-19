@@ -41,9 +41,7 @@ The kubeconfig can also be manually targeted for the intended cluster with the `
 
 ### Review Known Issues
 
-Review the [known upgrade issues](#known-upgrade-issues) in the Rancher documentation for the most noteworthy issues to consider when upgrading Rancher.
-
-A more complete list of known issues for each Rancher version can be found in the release notes on [GitHub](https://github.com/rancher/rancher/releases) and on the [Rancher forums.](https://forums.rancher.com/c/announcements/12)
+Review the list of known issues for each Rancher version, which can be found in the release notes on [GitHub](https://github.com/rancher/rancher/releases) and on the [Rancher forums.](https://forums.rancher.com/c/announcements/12)
 
 Note that upgrades _to_ or _from_ any chart in the [rancher-alpha repository]({{<baseurl>}}/rancher/v2.x/en/installation/install-rancher-on-k8s/chart-options/#helm-chart-repositories/) aren't supported.
 
@@ -61,10 +59,6 @@ For migration of installs started with Helm 2, refer to the official [Helm 2 to 
 
 If you are upgrading to Rancher v2.5 from a Rancher server that was started with the Helm chart option `--add-local=false`, you will need to drop that flag when upgrading. Otherwise, the Rancher server will not start. The `restricted-admin` role can be used to continue restricting access to the local cluster. For more information, see [this section.]({{<baseurl>}}/rancher/v2.x/en/admin-settings/rbac/global-permissions/#upgrading-from-rancher-with-a-hidden-local-cluster)
 
-### For upgrades from v2.0-v2.2 with external TLS termination
-
-If you are upgrading Rancher from v2.x to v2.3+, and you are using external TLS termination, you will need to edit the cluster.yml to [enable using forwarded host headers.]({{<baseurl>}}/rancher/v2.x/en/installation/install-rancher-on-k8s/chart-options/#configuring-ingress-for-external-tls-when-using-nginx-v0-25)
-
 ### For upgrades with cert-manager older than 0.8.0
 
 [Let's Encrypt will be blocking cert-manager instances older than 0.8.0 starting November 1st 2019.](https://community.letsencrypt.org/t/blocking-old-cert-manager-versions/98753) Upgrade cert-manager to the latest version by following [these instructions.]({{<baseurl>}}/rancher/v2.x/en/installation/options/upgrading-cert-manager)
@@ -80,10 +74,7 @@ Follow the steps to upgrade Rancher server:
 
 # 1. Back up Your Kubernetes Cluster that is Running Rancher Server
 
-For Rancher v2.5+, use the [backup application]({{<baseurl>}}/rancher/v2.x/en/backups/v2.5/back-up-rancher) to back up Rancher.
-
-For Rancher v2.0-v2.4, [take a one-time snapshot]({{<baseurl>}}/rancher/v2.x/en/backups/v2.0.x-v2.4.x/backup/rke-backups/#option-b-one-time-snapshots)
-of your Kubernetes cluster running Rancher server.
+Use the [backup application]({{<baseurl>}}/rancher/v2.x/en/backups/back-up-rancher) to back up Rancher.
 
 You'll use the backup as a restoration point if something goes wrong during upgrade.
 
@@ -192,7 +183,6 @@ If you are currently running the cert-manger whose version is older than v0.11, 
     ```
 
 {{% /tab %}}
-
 {{% tab "Kubernetes Air Gap Upgrade" %}}
 
 Render the Rancher template using the same chosen options that were used when installing Rancher. Use the reference table below to replace each placeholder. Rancher needs to be configured to use the private registry in order to provision any Rancher launched Kubernetes clusters or Rancher tools.
@@ -216,8 +206,8 @@ helm template ./rancher-<VERSION>.tgz --output-dir . \
  --set hostname=<RANCHER.YOURDOMAIN.COM> \
  --set certmanager.version=<CERTMANAGER_VERSION> \
  --set rancherImage=<REGISTRY.YOURDOMAIN.COM:PORT>/rancher/rancher \
- --set systemDefaultRegistry=<REGISTRY.YOURDOMAIN.COM:PORT> \ # Available as of v2.2.0, set a default private registry to be used in Rancher
- --set useBundledSystemChart=true # Available as of v2.3.0, use the packaged Rancher system charts
+ --set systemDefaultRegistry=<REGISTRY.YOURDOMAIN.COM:PORT> \ # Set a default private registry to be used in Rancher
+ --set useBundledSystemChart=true # Use the packaged Rancher system charts
 ```
 
 ### Option B: Certificates from Files using Kubernetes Secrets
@@ -229,8 +219,8 @@ helm template ./rancher-<VERSION>.tgz --output-dir . \
 --set hostname=<RANCHER.YOURDOMAIN.COM> \
 --set rancherImage=<REGISTRY.YOURDOMAIN.COM:PORT>/rancher/rancher \
 --set ingress.tls.source=secret \
---set systemDefaultRegistry=<REGISTRY.YOURDOMAIN.COM:PORT> \ # Available as of v2.2.0, set a default private registry to be used in Rancher
---set useBundledSystemChart=true # Available as of v2.3.0, use the packaged Rancher system charts
+--set systemDefaultRegistry=<REGISTRY.YOURDOMAIN.COM:PORT> \ # Set a default private registry to be used in Rancher
+--set useBundledSystemChart=true # Use the packaged Rancher system charts
 ```
 
 If you are using a Private CA signed cert, add `--set privateCA=true` following `--set ingress.tls.source=secret`:
@@ -243,8 +233,8 @@ helm template ./rancher-<VERSION>.tgz --output-dir . \
 --set rancherImage=<REGISTRY.YOURDOMAIN.COM:PORT>/rancher/rancher \
 --set ingress.tls.source=secret \
 --set privateCA=true \
---set systemDefaultRegistry=<REGISTRY.YOURDOMAIN.COM:PORT> \ # Available as of v2.2.0, set a default private registry to be used in Rancher
---set useBundledSystemChart=true # Available as of v2.3.0, use the packaged Rancher system charts
+--set systemDefaultRegistry=<REGISTRY.YOURDOMAIN.COM:PORT> \ # Set a default private registry to be used in Rancher
+--set useBundledSystemChart=true # Use the packaged Rancher system charts
 ```
 
 ### Apply the Rendered Templates
@@ -270,20 +260,4 @@ Log into Rancher to confirm that the upgrade succeeded.
 
 # Known Upgrade Issues
 
-The following table lists some of the most noteworthy issues to be considered when upgrading Rancher. A more complete list of known issues for each Rancher version can be found in the release notes on [GitHub](https://github.com/rancher/rancher/releases) and on the [Rancher forums.](https://forums.rancher.com/c/announcements/12)
-
-Upgrade Scenario | Issue
----|---
-Upgrading to v2.4.6 or v2.4.7 | These Rancher versions had an issue where the `kms:ListKeys` permission was required to create, edit, or clone Amazon EC2 node templates. This requirement was removed in v2.4.8.
-Upgrading to v2.3.0+ | Any user provisioned cluster will be automatically updated upon any edit as tolerations were added to the images used for Kubernetes provisioning.
-Upgrading to v2.2.0-v2.2.x | Rancher introduced the [system charts](https://github.com/rancher/system-charts) repository which contains all the catalog items required for features such as monitoring, logging, alerting and global DNS. To be able to use these features in an air gap install, you will need to mirror the `system-charts` repository locally and configure Rancher to use that repository. Please follow the instructions to [configure Rancher system charts]({{<baseurl>}}/rancher/v2.x/en/installation/resources/local-system-charts/).
-Upgrading from v2.0.13 or earlier  | If your cluster's certificates have expired, you will need to perform [additional steps]({{<baseurl>}}/rancher/v2.x/en/cluster-admin/certificate-rotation/#rotating-expired-certificates-after-upgrading-older-rancher-versions) to rotate the certificates.
-Upgrading from v2.0.7 or earlier | Rancher introduced the `system` project, which is a project that's automatically created to store important namespaces that Kubernetes needs to operate. During upgrade to v2.0.7+, Rancher expects these namespaces to be unassigned from all projects. Before beginning upgrade, check your system namespaces to make sure that they're unassigned to [prevent cluster networking issues.]({{<baseurl>}}/rancher/v2.x/en/installation/install-rancher-on-k8s/upgrades/namespace-migration)
-
-# RKE Add-on Installs
-
-**Important: RKE add-on install is only supported up to Rancher v2.0.8**
-
-Please use the Rancher helm chart to install Rancher on a Kubernetes cluster. For details, see the [Kubernetes Install]({{<baseurl>}}/rancher/v2.x/en/installation/install-rancher-on-k8s/).
-
-If you are currently using the RKE add-on install method, see [Migrating from a RKE add-on install]({{<baseurl>}}/rancher/v2.x/en/upgrades/upgrades/migrating-from-rke-add-on/) for details on how to move to using the helm chart.
+A list of known issues for each Rancher version can be found in the release notes on [GitHub](https://github.com/rancher/rancher/releases) and on the [Rancher forums.](https://forums.rancher.com/c/announcements/12)

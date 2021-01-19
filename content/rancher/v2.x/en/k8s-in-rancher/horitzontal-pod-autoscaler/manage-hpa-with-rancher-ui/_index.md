@@ -5,8 +5,6 @@ aliases:
   - /rancher/v2.x/en/k8s-in-rancher/horizontal-pod-autoscaler/manage-hpa-with-rancher-ui
 ---
 
-_Available as of v2.3.0_
-
 The Rancher UI supports creating, managing, and deleting HPAs. You can configure CPU or memory usage as the metric that the HPA uses to scale.
 
 If you want to create HPAs that scale based on other metrics than CPU and memory, refer to [Configuring HPA to Scale Using Custom Metrics with Prometheus]({{<baseurl>}}/rancher/v2.x/en/k8s-in-rancher/horitzontal-pod-autoscaler/manage-hpa-with-kubectl/#configuring-hpa-to-scale-using-custom-metrics-with-prometheus).

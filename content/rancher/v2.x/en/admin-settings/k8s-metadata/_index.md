@@ -3,8 +3,6 @@ title: Upgrading Kubernetes without Upgrading Rancher
 weight: 1120
 ---
 
-_Available as of v2.3.0_
-
 The RKE metadata feature allows you to provision clusters with new versions of Kubernetes as soon as they are released, without upgrading Rancher. This feature is useful for taking advantage of patch versions of Kubernetes, for example, if you want to upgrade to Kubernetes v1.14.7 when your Rancher server originally supported v1.14.6.
 
 > **Note:** The Kubernetes API can change between minor versions. Therefore, we don't support introducing minor Kubernetes versions, such as introducing v1.15 when Rancher currently supports v1.14. You would need to upgrade Rancher to add support for minor Kubernetes versions.
@@ -43,8 +41,6 @@ The RKE metadata config controls how often Rancher syncs metadata and where it d
 
 The way that the metadata is configured depends on the Rancher version.
 
-{{% tabs %}}
-{{% tab "Rancher v2.4+" %}}
 To edit the metadata config in Rancher,
 
 1. Go to the **Global** view and click the **Settings** tab.
@@ -56,25 +52,7 @@ To edit the metadata config in Rancher,
 
 If you don't have an air gap setup, you don't need to specify the URL where Rancher gets the metadata, because the default setting is to pull from [Rancher's metadata Git repository.](https://github.com/rancher/kontainer-driver-metadata/blob/dev-v2.5/data/data.json)
 
-However, if you have an [air gap setup,](#air-gap-setups) you will need to mirror the Kubernetes metadata repository in a location available to Rancher. Then you need to change the URL to point to the new location of the JSON file. 
-{{% /tab %}}
-{{% tab "Rancher v2.3" %}}
-To edit the metadata config in Rancher,
-
-1. Go to the **Global** view and click the **Settings** tab.
-1. Go to the **rke-metadata-config** section. Click the **&#8942;** and click **Edit.**
-1. You can optionally fill in the following parameters:
-
- - `refresh-interval-minutes`: This is the amount of time that Rancher waits to sync the metadata. To disable the periodic refresh, set `refresh-interval-minutes` to 0.
- - `url`: This is the HTTP path that Rancher fetches data from.
- - `branch`: This refers to the Git branch name if the URL is a Git URL. 
-
-If you don't have an air gap setup, you don't need to specify the URL or Git branch where Rancher gets the metadata, because the default setting is to pull from [Rancher's metadata Git repository.](https://github.com/rancher/kontainer-driver-metadata.git)
-
-However, if you have an [air gap setup,](#air-gap-setups) you will need to mirror the Kubernetes metadata repository in a location available to Rancher. Then you need to change the URL and Git branch in the `rke-metadata-config` settings to point to the new location of the repository.
-{{% /tab %}}
-{{% /tabs %}}
-
+However, if you have an [air gap setup,](#air-gap-setups) you will need to mirror the Kubernetes metadata repository in a location available to Rancher. Then you need to change the URL to point to the new location of the JSON file.
 ### Air Gap Setups
 
 Rancher relies on a periodic refresh of the `rke-metadata-config` to download new Kubernetes version metadata if it is supported with the current version of the Rancher server. For a table of compatible Kubernetes and Rancher versions, refer to the [service terms section.](https://rancher.com/support-maintenance-terms/all-supported-versions/rancher-v2.2.8/)

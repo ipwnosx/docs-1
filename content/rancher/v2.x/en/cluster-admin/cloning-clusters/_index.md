@@ -7,14 +7,14 @@ aliases:
 
 If you have a cluster in Rancher that you want to use as a template for creating similar clusters, you can use Rancher CLI to clone the cluster's configuration, edit it, and then use it to quickly launch the cloned cluster.
 
-Duplication of imported clusters is not supported.
+Duplication of registered clusters is not supported.
 
 | Cluster Type                     | Cloneable?    |
 |----------------------------------|---------------|
 | [Nodes Hosted by Infrastructure Provider]({{<baseurl>}}/rancher/v2.x/en/cluster-provisioning/rke-clusters/node-pools/) | ✓ |
 | [Hosted Kubernetes Providers]({{<baseurl>}}/rancher/v2.x/en/cluster-provisioning/hosted-kubernetes-clusters/) | ✓    |
 | [Custom Cluster]({{<baseurl>}}/rancher/v2.x/en/cluster-provisioning/rke-clusters/custom-nodes)              | ✓              |
-| [Imported Cluster]({{<baseurl>}}/rancher/v2.x/en/cluster-provisioning/imported-clusters/)            |               |
+| [Registered Cluster]({{<baseurl>}}/rancher/v2.x/en/cluster-provisioning/registered-clusters/)            |               |
 
 > **Warning:** During the process of duplicating a cluster, you will edit a config file full of cluster settings. However, we recommend editing only values explicitly listed in this document, as cluster duplication is designed for simple cluster copying, _not_ wide scale configuration changes. Editing other values may invalidate the config file, which will lead to cluster deployment failure.
 
@@ -51,7 +51,7 @@ Begin by using Rancher CLI to export the configuration for the cluster that you 
 
 Use your favorite text editor to modify the cluster configuration in `cluster-template.yml` for your cloned cluster.
 
-> **Note:** As of Rancher v2.3.0, cluster configuration directives must be nested under the `rancher_kubernetes_engine_config` directive in `cluster.yml`. For more information, refer to the section on [the config file structure in Rancher v2.3.0+.]({{<baseurl>}}/rancher/v2.x/en/cluster-provisioning/rke-clusters/options/#config-file-structure-in-rancher-v2-3-0)
+> **Note:** Cluster configuration directives must be nested under the `rancher_kubernetes_engine_config` directive in `cluster.yml`. For more information, refer to the section on [the config file structure in Rancher v2.3.0+.]({{<baseurl>}}/rancher/v2.x/en/cluster-provisioning/rke-clusters/options/#config-file-structure-in-rancher-v2-3-0)
 
 1. Open `cluster-template.yml` (or whatever you named your config) in your favorite text editor.
 

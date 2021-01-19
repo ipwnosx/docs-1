@@ -3,8 +3,6 @@ title: Backing up a Cluster
 weight: 2045
 ---
 
-_Available as of v2.2.0_
-
 In the Rancher UI, etcd backup and recovery for [Rancher launched Kubernetes clusters]({{<baseurl>}}/rancher/v2.x/en/cluster-provisioning/rke-clusters/) can be easily performed.
 
 Rancher recommends configuring recurrent `etcd` snapshots for all production clusters. Additionally, one-time snapshots can easily be taken as well.
@@ -26,9 +24,6 @@ This section covers the following topics:
 - [Enabling snapshot features for clusters created before Rancher v2.2.0](#enabling-snapshot-features-for-clusters-created-before-rancher-v2-2-0)
 
 # How Snapshots Work
-
-{{% tabs %}}
-{{% tab "Rancher v2.4.0+" %}}
 
 ### Snapshot Components
 
@@ -84,53 +79,6 @@ On restore, the following process is used:
 4. The other etcd nodes download the snapshot and validate the checksum so that they all use the same snapshot for the restore.
 5.  The cluster is restored and post-restore actions will be done in the cluster.
 
-{{% /tab %}}
-{{% tab "Rancher prior to v2.4.0" %}}
-When Rancher creates a snapshot, only the etcd data is included in the snapshot.
-
-Because the Kubernetes version is not included in the snapshot, there is no option to restore a cluster to a different Kubernetes version.
-
-It's always recommended to take a new snapshot before any upgrades.
-
-### Generating the Snapshot from etcd Nodes
-
-For each etcd node in the cluster, the etcd cluster health is checked. If the node reports that the etcd cluster is healthy, a snapshot is created from it and optionally uploaded to S3.
-
-The snapshot is stored in `/opt/rke/etcd-snapshots`. If the directory is configured on the nodes as a shared mount, it will be overwritten. On S3, the snapshot will always be from the last node that uploads it, as all etcd nodes upload it and the last will remain.
-
-In the case when multiple etcd nodes exist, any created snapshot is created after the cluster has been health checked, so it can be considered a valid snapshot of the data in the etcd cluster.
-
-### Snapshot Naming Conventions
-
-The name of the snapshot is auto-generated. The `--name` option can be used to override the name of the snapshot when creating one-time snapshots with the RKE CLI.
-
-When Rancher creates a snapshot of an RKE cluster, the snapshot name is based on the type (whether the snapshot  is manual or recurring) and the target (whether the snapshot is saved locally or uploaded to S3). The naming convention is as follows:
-
-- `m` stands for manual
-- `r` stands for recurring
-- `l` stands for local
-- `s` stands for S3
-
-Some example snapshot names are:
-
-- c-9dmxz-rl-8b2cx
-- c-9dmxz-ml-kr56m
-- c-9dmxz-ms-t6bjb
-- c-9dmxz-rs-8gxc8
-
-### How Restoring from a Snapshot Works
-
-On restore, the following process is used:
-
-1. The snapshot is retrieved from S3, if S3 is configured.
-2. The snapshot is unzipped (if zipped).
-3. One of the etcd nodes in the cluster serves that snapshot file to the other nodes.
-4. The other etcd nodes download the snapshot and validate the checksum so that they all use the same snapshot for the restore.
-5.  The cluster is restored and post-restore actions will be done in the cluster.
-
-{{% /tab %}}
-{{% /tabs %}}
-
 # Configuring Recurring Snapshots
 
 Select how often you want recurring snapshots to be taken as well as how many snapshots to keep. The amount of time is measured in hours. With timestamped snapshots, the user has the ability to do a point-in-time recovery.
@@ -180,11 +128,9 @@ The `S3` backup target allows users to configure a S3 compatible backend to stor
 |S3 Region Endpoint|S3 regions endpoint for the backup bucket|* |
 |S3 Access Key|S3 access key with permission to access the backup bucket|*|
 |S3 Secret Key|S3 secret key with permission to access the backup bucket|*|
-| Custom CA Certificate | A custom certificate used to access private S3 backends _Available as of v2.2.5_ ||
+| Custom CA Certificate | A custom certificate used to access private S3 backends ||
 
 ### Using a custom CA certificate for S3
-
-_Available as of v2.2.5_
 
 The backup snapshot can be stored on a custom `S3` backup like [minio](https://min.io/). If the S3 back end uses a self-signed or custom certificate, provide a custom certificate using the `Custom CA Certificate` option to connect to the S3 backend.
 
@@ -209,9 +155,9 @@ The list of all available snapshots for the cluster is available in the Rancher 
 
 # Safe Timestamps
 
-_Available as of v2.3.0_
+Snapshot files are timestamped to simplify processing the files using external tools and scripts, but in some S3 compatible backends, these timestamps were unusable. 
 
-As of v2.2.6, snapshot files are timestamped to simplify processing the files using external tools and scripts, but in some S3 compatible backends, these timestamps were unusable. As of Rancher v2.3.0, the option `safe_timestamp` is added to support compatible file names. When this flag is set to `true`, all special characters in the snapshot filename timestamp are replaced.
+The option `safe_timestamp` is added to support compatible file names. When this flag is set to `true`, all special characters in the snapshot filename timestamp are replaced.
 
 This option is not available directly in the UI, and is only available through the `Edit as Yaml` interface.
 

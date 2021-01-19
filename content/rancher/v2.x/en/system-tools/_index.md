@@ -86,7 +86,7 @@ The following are the options for the stats command:
 When you install Rancher on a Kubernetes cluster, it will create Kubernetes resources to run and to store configuration data. If you want to remove Rancher from your cluster, you can use the `remove` subcommand to remove the Kubernetes resources. When you use the `remove` subcommand, the following resources will be removed:
 
 - The Rancher deployment namespace (`cattle-system` by default).
-- Any `serviceAccount`, `clusterRoles`, and `clusterRoleBindings` that Rancher applied the `cattle.io/creator:norman` label to. Rancher applies this label to any resource that it creates as of v2.1.0.
+- Any `serviceAccount`, `clusterRoles`, and `clusterRoleBindings` that Rancher applied the `cattle.io/creator:norman` label to. Rancher applies this label to any resource that it creates.
 - Labels, annotations, and finalizers.
 - Rancher Deployment.
 - Machines, clusters, projects, and user custom resource deployments (CRDs).

@@ -114,16 +114,3 @@ kubectl get nodes -o json | jq '.items[].metadata | select(.annotations["flannel
 ```
 
 If there is no output, the cluster is not affected.
-
-#### System namespace pods network connectivity broken
-
-> **Note:** This applies only to Rancher upgrades from v2.0.6 or earlier to v2.0.7 or later. Upgrades from v2.0.7 to later version are unaffected.
-
-| | |
-|------------|------------|
-| GitHub issue | [#15146](https://github.com/rancher/rancher/issues/15146) |
-
-If pods in system namespaces cannot communicate with pods in other system namespaces, you will need to follow the instructions in [Upgrading to v2.0.7+ — Namespace Migration]({{<baseurl>}}/rancher/v2.x/en/upgrades/upgrades/namespace-migration/) to restore connectivity. Symptoms include:
-
-- NGINX ingress controller showing `504 Gateway Time-out` when accessed.
-- NGINX ingress controller logging `upstream timed out (110: Connection timed out) while connecting to upstream` when accessed.

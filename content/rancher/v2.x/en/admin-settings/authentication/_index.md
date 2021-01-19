@@ -14,19 +14,19 @@ This centralized user authentication is accomplished using the Rancher authentic
 
 The Rancher authentication proxy integrates with the following external authentication services. The following table lists the first version of Rancher each service debuted.
 
-| Auth Service                                                                                     | Available as of  |
-| ------------------------------------------------------------------------------------------------ | ---------------- |
-| [Microsoft Active Directory]({{<baseurl>}}/rancher/v2.x/en/admin-settings/authentication/ad/)  | v2.0.0           |
-| [GitHub]({{<baseurl>}}/rancher/v2.x/en/admin-settings/authentication/github/)                  | v2.0.0           |
-| [Microsoft Azure AD]({{<baseurl>}}/rancher/v2.x/en/admin-settings/authentication/azure-ad/)    | v2.0.3           |
-| [FreeIPA]({{<baseurl>}}/rancher/v2.x/en/admin-settings/authentication/freeipa/)                | v2.0.5           |
-| [OpenLDAP]({{<baseurl>}}/rancher/v2.x/en/admin-settings/authentication/openldap/)              | v2.0.5           |
-| [Microsoft AD FS]({{<baseurl>}}/rancher/v2.x/en/admin-settings/authentication/microsoft-adfs/) | v2.0.7           |
-| [PingIdentity]({{<baseurl>}}/rancher/v2.x/en/admin-settings/authentication/ping-federate/)     | v2.0.7           |
-| [Keycloak]({{<baseurl>}}/rancher/v2.x/en/admin-settings/authentication/keycloak/)              | v2.1.0           |
-| [Okta]({{<baseurl>}}/rancher/v2.x/en/admin-settings/authentication/okta/)                      | v2.2.0           |
-| [Google OAuth]({{<baseurl>}}/rancher/v2.x/en/admin-settings/authentication/google/)            | v2.3.0           |
-| [Shibboleth]({{<baseurl>}}/rancher/v2.x/en/admin-settings/authentication/shibboleth)           | v2.4.0           |
+| Auth Service                                                                                     |
+| ------------------------------------------------------------------------------------------------ |
+| [Microsoft Active Directory]({{<baseurl>}}/rancher/v2.x/en/admin-settings/authentication/ad/)  |
+| [GitHub]({{<baseurl>}}/rancher/v2.x/en/admin-settings/authentication/github/)                  |
+| [Microsoft Azure AD]({{<baseurl>}}/rancher/v2.x/en/admin-settings/authentication/azure-ad/)    |
+| [FreeIPA]({{<baseurl>}}/rancher/v2.x/en/admin-settings/authentication/freeipa/)                |
+| [OpenLDAP]({{<baseurl>}}/rancher/v2.x/en/admin-settings/authentication/openldap/)              |
+| [Microsoft AD FS]({{<baseurl>}}/rancher/v2.x/en/admin-settings/authentication/microsoft-adfs/) |
+| [PingIdentity]({{<baseurl>}}/rancher/v2.x/en/admin-settings/authentication/ping-federate/)     |
+| [Keycloak]({{<baseurl>}}/rancher/v2.x/en/admin-settings/authentication/keycloak/)              |
+| [Okta]({{<baseurl>}}/rancher/v2.x/en/admin-settings/authentication/okta/)                      | 
+| [Google OAuth]({{<baseurl>}}/rancher/v2.x/en/admin-settings/authentication/google/)            | 
+| [Shibboleth]({{<baseurl>}}/rancher/v2.x/en/admin-settings/authentication/shibboleth)           |
 
 <br/>
 However, Rancher also provides [local authentication]({{<baseurl>}}/rancher/v2.x/en/admin-settings/authentication/local/).

@@ -45,9 +45,7 @@ A high-availability Kubernetes installation is recommended for production.
 
 A Docker installation of Rancher is recommended only for development and testing purposes. The ability to migrate Rancher to a high-availability cluster depends on the Rancher version:
 
-- For Rancher v2.0-v2.4, there was no migration path from a Docker installation to a high-availability installation. Therefore, if you are using Rancher prior to v2.5, you may want to use a Kubernetes installation from the start.
-
-- For Rancher v2.5+, the Rancher backup operator can be used to migrate Rancher from the single Docker container install to an installation on a high-availability Kubernetes cluster. For details, refer to the documentation on [migrating Rancher to a new cluster.]({{<baseurl>}}/rancher/v2.x/en/backups/v2.5/migrating-rancher/)
+The Rancher backup operator can be used to migrate Rancher from the single Docker container install to an installation on a high-availability Kubernetes cluster. For details, refer to the documentation on [migrating Rancher to a new cluster.]({{<baseurl>}}/rancher/v2.x/en/backups/v2.5/migrating-rancher/)
 
 The Rancher server, regardless of the installation method, should always run on nodes that are separate from the downstream user clusters that it manages. If Rancher is installed on a high-availability Kubernetes cluster, it should run on a separate cluster from the cluster(s) it manages.
 
@@ -109,7 +107,7 @@ The `cattle-node-agent` is deployed using a [DaemonSet](https://kubernetes.io/do
 
 An authorized cluster endpoint allows users to connect to the Kubernetes API server of a downstream cluster without having to route their requests through the Rancher authentication proxy.
 
-> The authorized cluster endpoint only works on Rancher-launched Kubernetes clusters. In other words, it only works in clusters where Rancher [used RKE]({{<baseurl>}}/rancher/v2.x/en/cluster-provisioning/rke-clusters) to provision the cluster. It is not available for imported clusters, or for clusters in a hosted Kubernetes provider, such as Amazon's EKS.
+> The authorized cluster endpoint only works on Rancher-launched Kubernetes clusters. In other words, it only works in clusters where Rancher [used RKE]({{<baseurl>}}/rancher/v2.x/en/cluster-provisioning/rke-clusters) to provision the cluster. It is not available for registered clusters, or for clusters in a hosted Kubernetes provider, such as Amazon's EKS.
 
 There are two main reasons why a user might need the authorized cluster endpoint:
 
@@ -160,7 +158,7 @@ When setting up this type of cluster, Kubernetes is installed by providers such 
 
 Rancher provisions this type of cluster using [kontainer-engine.](https://github.com/rancher/kontainer-engine)
 
-### Imported Kubernetes Clusters
+### Registered Kubernetes Clusters
 
 In this type of cluster, Rancher connects to a Kubernetes cluster that has already been set up. Therefore, Rancher does not provision Kubernetes, but only sets up the Rancher agents to communicate with the cluster.
 

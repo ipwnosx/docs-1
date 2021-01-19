@@ -32,9 +32,9 @@ This section contains information to help you troubleshoot issues when using Ran
 
     If you experience issues with your [Rancher server installed on Kubernetes]({{<baseurl>}}/rancher/v2.x/en/installation/install-rancher-on-k8s/)
 
-- [Imported clusters]({{<baseurl>}}/rancher/v2.x/en/troubleshooting/imported-clusters/)
+- [Registered clusters]({{<baseurl>}}/rancher/v2.x/en/troubleshooting/registered-clusters/)
 
-    If you experience issues when [Importing Kubernetes Clusters]({{<baseurl>}}/rancher/v2.x/en/cluster-provisioning/imported-clusters/)
+    If you experience issues when [Registering Kubernetes Clusters]({{<baseurl>}}/rancher/v2.x/en/cluster-provisioning/registered-clusters/)
 
 - [Logging]({{<baseurl>}}/rancher/v2.x/en/troubleshooting/logging/)
 

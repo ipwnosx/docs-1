@@ -1,6 +1,6 @@
 ---
 title: Pipelines
-weight: 11
+weight: 10
 aliases:
   - /rancher/v2.x/en/k8s-in-rancher/pipelines  
 ---
@@ -19,11 +19,7 @@ After configuring Rancher and GitHub, you can deploy containers running Jenkins 
 - Run unit tests.  
 - Run regression tests.
 
->**Notes:**
->
->- Pipelines improved in Rancher v2.1. Therefore, if you configured pipelines while using v2.0.x, you'll have to reconfigure them after upgrading to v2.1.
->- Still using v2.0.x? See the pipeline documentation for [previous versions]({{<baseurl>}}/rancher/v2.x/en/k8s-in-rancher/pipelines/docs-for-v2.0.x).
->- Rancher's pipeline provides a simple CI/CD experience, but it does not offer the full power and flexibility of and is not a replacement of enterprise-grade Jenkins or other CI tools your team uses.
+>**Note: Rancher's pipeline provides a simple CI/CD experience, but it does not offer the full power and flexibility of and is not a replacement of enterprise-grade Jenkins or other CI tools your team uses.
 
 This section covers the following topics:
 
@@ -87,13 +83,11 @@ To set up pipelines, you will need to do the following:
 
 ### 1. Configure Version Control Providers
 
-Before you can start configuring a pipeline for your repository, you must configure and authorize a version control provider.
+Before you can start configuring a pipeline for your repository, you must configure and authorize a version control provider:
 
-| Provider  | Available as of  |
-| --- | --- |
-| GitHub  | v2.0.0           |
-| GitLab | v2.1.0 |
-| Bitbucket | v2.2.0 |
+- GitHub
+- GitLab
+- Bitbucket
 
 Select your provider's tab below and follow the directions.
 
@@ -101,7 +95,7 @@ Select your provider's tab below and follow the directions.
 {{% tab "GitHub" %}}
 1. From the **Global** view, navigate to the project that you want to configure pipelines.
 
-1. Select **Tools > Pipelines** in the navigation bar. In versions prior to v2.2.0, you can select **Resources > Pipelines**.
+1. Select **Tools > Pipelines** in the navigation bar.
 
 1. Follow the directions displayed to **Setup a Github application**. Rancher redirects you to Github to setup an OAuth App in Github.
 
@@ -114,11 +108,9 @@ Select your provider's tab below and follow the directions.
 {{% /tab %}}
 {{% tab "GitLab" %}}
 
-_Available as of v2.1.0_
-
 1. From the **Global** view, navigate to the project that you want to configure pipelines.
 
-1. Select **Tools > Pipelines** in the navigation bar. In versions prior to v2.2.0, you can select **Resources > Pipelines**.
+1. Select **Tools > Pipelines** in the navigation bar.
 
 1. Follow the directions displayed to **Setup a GitLab application**. Rancher redirects you to GitLab.
 
@@ -134,8 +126,6 @@ _Available as of v2.1.0_
 {{% /tab %}}
 {{% tab "Bitbucket Cloud" %}}
 
-_Available as of v2.2.0_
-
 1. From the **Global** view, navigate to the project that you want to configure pipelines.
 
 1. Select **Tools > Pipelines** in the navigation bar.
@@ -150,8 +140,6 @@ _Available as of v2.2.0_
 
 {{% /tab %}}
 {{% tab "Bitbucket Server" %}}
-
-_Available as of v2.2.0_
 
 1. From the **Global** view, navigate to the project that you want to configure pipelines.
 
@@ -182,7 +170,7 @@ After the version control provider is authorized, you are automatically re-direc
 
 1. From the **Global** view, navigate to the project that you want to configure pipelines.
 
-1. Click **Resources > Pipelines.** In versions prior to v2.3.0, click **Workloads > Pipelines.**
+1. Click **Resources > Pipelines.**
 
 1. Click on **Configure Repositories**.
 
@@ -200,7 +188,7 @@ Now that repositories are added to your project, you can start configuring the p
 
 1. From the **Global** view, navigate to the project that you want to configure pipelines.
 
-1. Click **Resources > Pipelines.** In versions prior to v2.3.0, click **Workloads > Pipelines.**
+1. Click **Resources > Pipelines.**
 
 1. Find the repository that you want to set up a pipeline for.
 
@@ -211,7 +199,7 @@ Now that repositories are added to your project, you can start configuring the p
 
 1. Select which `branch` to use from the list of branches.
 
-1. _Available as of v2.2.0_ Optional: Set up notifications.
+1. Optional: Set up notifications.
 
 1. Set up the trigger rules for the pipeline.
 
@@ -243,7 +231,7 @@ The configuration reference also covers how to configure:
 
 # Running your Pipelines
 
-Run your pipeline for the first time. From the project view in Rancher, go to **Resources > Pipelines.** (In versions prior to v2.3.0, go to the **Pipelines** tab.) Find your pipeline and select the vertical **&#8942; > Run**.
+Run your pipeline for the first time. From the project view in Rancher, go to **Resources > Pipelines.** Find your pipeline and select the vertical **&#8942; > Run**.
 
 During this initial run, your pipeline is tested, and the following pipeline components are deployed to your project as workloads in a new namespace dedicated to the pipeline:
 
@@ -269,7 +257,7 @@ Available Events:
 
 1. From the **Global** view, navigate to the project that you want to modify the event trigger for the pipeline.
 
-1. 1. Click **Resources > Pipelines.** In versions prior to v2.3.0, click **Workloads > Pipelines.**
+1. 1. Click **Resources > Pipelines.**
 
 1. Find the repository that you want to modify the event triggers. Select the vertical **&#8942; > Setting**.
 

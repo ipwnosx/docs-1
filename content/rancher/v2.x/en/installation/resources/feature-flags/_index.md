@@ -10,7 +10,7 @@ Rancher includes some features that are experimental and disabled by default. Yo
 The features can be enabled in three ways:
 
 - [Enable features when starting Rancher.](#enabling-features-when-starting-rancher) When installing Rancher with a CLI, you can use a feature flag to enable a feature by default.
-- [Enable features from the Rancher UI](#enabling-features-with-the-rancher-ui) in Rancher v2.3.3+ by going to the **Settings** page.
+- [Enable features from the Rancher UI](#enabling-features-with-the-rancher-ui) by going to the **Settings** page.
 - [Enable features with the Rancher API](#enabling-features-with-the-rancher-api) after installing Rancher.
 
 Each feature has two values:
@@ -24,7 +24,7 @@ Because the API sets the actual value and the command line sets the default valu
 
 For example, if you install Rancher, then set a feature flag to true with the Rancher API, then upgrade Rancher with a command that sets the feature flag to false, the default value will still be false, but the feature will still be enabled because it was set with the Rancher API. If you then deleted the set value (true) with the Rancher API, setting it to NULL, the default value (false) would take effect.
 
-> **Note:** As of v2.4.0, there are some feature flags that may require a restart of the Rancher server container. These features that require a restart are marked in the table of these docs and in the UI.
+> **Note:** There are some feature flags that may require a restart of the Rancher server container. These features that require a restart are marked in the table of these docs and in the UI.
 
 The following is a list of the feature flags available in Rancher:
 
@@ -58,8 +58,8 @@ helm install rancher-latest/rancher \
   --name rancher \
   --namespace cattle-system \
   --set hostname=rancher.my.org \
-  --set 'extraEnv[0].name=CATTLE_FEATURES' # Available as of v2.3.0
-  --set 'extraEnv[0].value=<FEATURE-FLAG-NAME-1>=true,<FEATURE-FLAG-NAME-2>=true' # Available as of v2.3.0
+  --set 'extraEnv[0].name=CATTLE_FEATURES'
+  --set 'extraEnv[0].value=<FEATURE-FLAG-NAME-1>=true,<FEATURE-FLAG-NAME-2>=true'
 ```
 
 Note: If you are installing an alpha version, Helm requires adding the `--devel` option to the command.
@@ -78,10 +78,10 @@ helm template rancher ./rancher-<VERSION>.tgz --output-dir . \
   --set hostname=<RANCHER.YOURDOMAIN.COM> \
   --set rancherImage=<REGISTRY.YOURDOMAIN.COM:PORT>/rancher/rancher \
   --set ingress.tls.source=secret \
-  --set systemDefaultRegistry=<REGISTRY.YOURDOMAIN.COM:PORT> \ # Available as of v2.2.0, set a default private registry to be used in Rancher
-  --set useBundledSystemChart=true # Available as of v2.3.0, use the packaged Rancher system charts
-  --set 'extraEnv[0].name=CATTLE_FEATURES' # Available as of v2.3.0
-  --set 'extraEnv[0].value=<FEATURE-FLAG-NAME-1>=true,<FEATURE-FLAG-NAME-2>=true' # Available as of v2.3.0
+  --set systemDefaultRegistry=<REGISTRY.YOURDOMAIN.COM:PORT> \ # Set a default private registry to be used in Rancher
+  --set useBundledSystemChart=true # Use the packaged Rancher system charts
+  --set 'extraEnv[0].name=CATTLE_FEATURES'
+  --set 'extraEnv[0].value=<FEATURE-FLAG-NAME-1>=true,<FEATURE-FLAG-NAME-2>=true'
 ```
 
 The Helm 2 command is as follows:
@@ -93,10 +93,10 @@ helm template ./rancher-<VERSION>.tgz --output-dir . \
   --set hostname=<RANCHER.YOURDOMAIN.COM> \
   --set rancherImage=<REGISTRY.YOURDOMAIN.COM:PORT>/rancher/rancher \
   --set ingress.tls.source=secret \
-  --set systemDefaultRegistry=<REGISTRY.YOURDOMAIN.COM:PORT> \ # Available as of v2.2.0, set a default private registry to be used in Rancher
-  --set useBundledSystemChart=true # Available as of v2.3.0, use the packaged Rancher system charts
-  --set 'extraEnv[0].name=CATTLE_FEATURES' # Available as of v2.3.0
-  --set 'extraEnv[0].value=<FEATURE-FLAG-NAME-1>=true,<FEATURE-FLAG-NAME-2>=true' # Available as of v2.3.0
+  --set systemDefaultRegistry=<REGISTRY.YOURDOMAIN.COM:PORT> \ # Set a default private registry to be used in Rancher
+  --set useBundledSystemChart=true # Use the packaged Rancher system charts
+  --set 'extraEnv[0].name=CATTLE_FEATURES'
+  --set 'extraEnv[0].value=<FEATURE-FLAG-NAME-1>=true,<FEATURE-FLAG-NAME-2>=true'
 ```
 
 {{% /tab %}}
@@ -107,7 +107,7 @@ When installing Rancher with Docker, use the `--features` option. In the below e
 docker run -d -p 80:80 -p 443:443 \
   --restart=unless-stopped \
   rancher/rancher:rancher-latest \
-  --features=<FEATURE-FLAG-NAME-1>=true,<FEATURE-NAME-2>=true # Available as of v2.3.0
+  --features=<FEATURE-FLAG-NAME-1>=true,<FEATURE-NAME-2>=true 
 ```
 
 {{% /tab %}}

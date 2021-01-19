@@ -7,7 +7,7 @@ aliases:
   - /rancher/v2.x/en/installation/resources/encryption/tls-settings
 ---
 
-In Rancher v2.1.7, the default TLS configuration changed to only accept TLS 1.2 and secure TLS cipher suites. TLS 1.3 and TLS 1.3 exclusive cipher suites are not supported.
+The default TLS configuration only accepts TLS 1.2 and secure TLS cipher suites. TLS 1.3 and TLS 1.3 exclusive cipher suites are not supported.
 
 # Configuring TLS settings
 

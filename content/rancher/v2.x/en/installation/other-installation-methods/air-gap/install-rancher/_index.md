@@ -25,7 +25,6 @@ This section describes installing Rancher in five parts:
 - [2. Choose your SSL Configuration](#2-choose-your-ssl-configuration)
 - [3. Render the Rancher Helm Template](#3-render-the-rancher-helm-template)
 - [4. Install Rancher](#4-install-rancher)
-- [5. For Rancher versions prior to v2.3.0, Configure System Charts](#5-for-rancher-versions-prior-to-v2-3-0-configure-system-charts)
 
 # 1. Add the Helm Chart Repository
 
@@ -70,7 +69,7 @@ When setting up the Rancher Helm template, there are several options in the Helm
 | ----------------------- | -------------------------------- | ---- |
 | `certmanager.version` | "<version>" | Configure proper Rancher TLS issuer depending of running cert-manager version. |
 | `systemDefaultRegistry` | `<REGISTRY.YOURDOMAIN.COM:PORT>` | Configure Rancher server to always pull from your private registry when provisioning clusters.  |
-| `useBundledSystemChart` | `true`                           | Configure Rancher server to use the packaged copy of Helm system charts. The [system charts](https://github.com/rancher/system-charts) repository contains all the catalog items required for features such as monitoring, logging, alerting and global DNS. These [Helm charts](https://github.com/rancher/system-charts) are located in GitHub, but since you are in an air gapped environment, using the charts that are bundled within Rancher is much easier than setting up a Git mirror. _Available as of v2.3.0_ |
+| `useBundledSystemChart` | `true`                           | Configure Rancher server to use the packaged copy of Helm system charts. The [system charts](https://github.com/rancher/system-charts) repository contains all the catalog items required for features such as monitoring, logging, alerting and global DNS. These [Helm charts](https://github.com/rancher/system-charts) are located in GitHub, but since you are in an air gapped environment, using the charts that are bundled within Rancher is much easier than setting up a Git mirror. |
 
 Based on the choice your made in [B. Choose your SSL Configuration](#b-choose-your-ssl-configuration), complete one of the procedures below.
 
@@ -125,8 +124,8 @@ By default, Rancher generates a CA and uses cert-manager to issue the certificat
      --set hostname=<RANCHER.YOURDOMAIN.COM> \
      --set certmanager.version=<CERTMANAGER_VERSION> \
      --set rancherImage=<REGISTRY.YOURDOMAIN.COM:PORT>/rancher/rancher \
-     --set systemDefaultRegistry=<REGISTRY.YOURDOMAIN.COM:PORT> \ # Available as of v2.2.0, set a default private registry to be used in Rancher
-     --set useBundledSystemChart=true # Available as of v2.3.0, use the packaged Rancher system charts
+     --set systemDefaultRegistry=<REGISTRY.YOURDOMAIN.COM:PORT> \ # Set a default private registry to be used in Rancher
+     --set useBundledSystemChart=true # Use the packaged Rancher system charts
 ```
 
 **Optional**: To install a specific Rancher version, set the `rancherImageTag` value, example: `--set rancherImageTag=v2.3.6`
@@ -153,8 +152,8 @@ Render the Rancher template, declaring your chosen options. Use the reference ta
     --set hostname=<RANCHER.YOURDOMAIN.COM> \
     --set rancherImage=<REGISTRY.YOURDOMAIN.COM:PORT>/rancher/rancher \
     --set ingress.tls.source=secret \
-    --set systemDefaultRegistry=<REGISTRY.YOURDOMAIN.COM:PORT> \ # Available as of v2.2.0, set a default private registry to be used in Rancher
-    --set useBundledSystemChart=true # Available as of v2.3.0, use the packaged Rancher system charts
+    --set systemDefaultRegistry=<REGISTRY.YOURDOMAIN.COM:PORT> \ # Set a default private registry to be used in Rancher
+    --set useBundledSystemChart=true # Use the packaged Rancher system charts
 ```
 
 If you are using a Private CA signed cert, add `--set privateCA=true` following `--set ingress.tls.source=secret`:
@@ -166,8 +165,8 @@ If you are using a Private CA signed cert, add `--set privateCA=true` following 
     --set rancherImage=<REGISTRY.YOURDOMAIN.COM:PORT>/rancher/rancher \
     --set ingress.tls.source=secret \
     --set privateCA=true \
-    --set systemDefaultRegistry=<REGISTRY.YOURDOMAIN.COM:PORT> \ # Available as of v2.2.0, set a default private registry to be used in Rancher
-    --set useBundledSystemChart=true # Available as of v2.3.0, use the packaged Rancher system charts
+    --set systemDefaultRegistry=<REGISTRY.YOURDOMAIN.COM:PORT> \ # Set a default private registry to be used in Rancher
+    --set useBundledSystemChart=true # Use the packaged Rancher system charts
 ```
 
 **Optional**: To install a specific Rancher version, set the `rancherImageTag` value, example: `--set rancherImageTag=v2.3.6`
@@ -216,13 +215,9 @@ kubectl apply -R -f ./cert-manager
 kubectl create namespace cattle-system
 kubectl -n cattle-system apply -R -f ./rancher
 ```
-**Step Result:** If you are installing Rancher v2.3.0+, the installation is complete.
+The installation is complete.
 
 > **Note:** If you don't intend to send telemetry data, opt out [telemetry]({{<baseurl>}}/rancher/v2.x/en/faq/telemetry/) during the initial login. Leaving this active in an air-gapped environment can cause issues if the sockets cannot be opened successfully.
-
-# 5. For Rancher versions prior to v2.3.0, Configure System Charts
-
-If you are installing Rancher versions prior to v2.3.0, you will not be able to use the packaged system charts. Since the Rancher system charts are hosted in Github, an air gapped installation will not be able to access these charts. Therefore, you must [configure the Rancher system charts]({{<baseurl>}}/rancher/v2.x/en/installation/resources/local-system-charts/).
 
 # Additional Resources
 
@@ -239,8 +234,6 @@ The Docker installation is for Rancher users who want to test out Rancher.
 
 Instead of running on a Kubernetes cluster, you install the Rancher server component on a single node using a `docker run` command. Since there is only one node and a single Docker container, if the node goes down, there is no copy of the etcd data available on other nodes and you will lose all the data of your Rancher server. 
 
-> **Important:** For Rancher v2.0-v2.4, there is no upgrade path to transition your Docker installation to a Kubernetes Installation.** Instead of running the single node installation, you have the option to follow the Kubernetes Install guide, but only use one node to install Rancher. Afterwards, you can scale up the etcd nodes in your Kubernetes cluster to make it a Kubernetes Installation.
-
 For Rancher v2.5+, the backup application can be used to migrate the Rancher server from a Docker install to a Kubernetes install using [these steps.]({{<baseurl>}}/rancher/v2.x/en/backups/v2.5/migrating-rancher/)
 
 For security purposes, SSL (Secure Sockets Layer) is required when using Rancher. SSL secures all Rancher network communication, like when you login or interact with a cluster.
@@ -248,14 +241,12 @@ For security purposes, SSL (Secure Sockets Layer) is required when using Rancher
 | Environment Variable Key         | Environment Variable Value       | Description     |
 | -------------------------------- | -------------------------------- | ---- |
 | `CATTLE_SYSTEM_DEFAULT_REGISTRY` | `<REGISTRY.YOURDOMAIN.COM:PORT>` | Configure Rancher server to always pull from your private registry when provisioning clusters.  |
-| `CATTLE_SYSTEM_CATALOG`          | `bundled`                        | Configure Rancher server to use the packaged copy of Helm system charts. The [system charts](https://github.com/rancher/system-charts) repository contains all the catalog items required for features such as monitoring, logging, alerting and global DNS. These [Helm charts](https://github.com/rancher/system-charts) are located in GitHub, but since you are in an air gapped environment, using the charts that are bundled within Rancher is much easier than setting up a Git mirror. _Available as of v2.3.0_ |
+| `CATTLE_SYSTEM_CATALOG`          | `bundled`                        | Configure Rancher server to use the packaged copy of Helm system charts. The [system charts](https://github.com/rancher/system-charts) repository contains all the catalog items required for features such as monitoring, logging, alerting and global DNS. These [Helm charts](https://github.com/rancher/system-charts) are located in GitHub, but since you are in an air gapped environment, using the charts that are bundled within Rancher is much easier than setting up a Git mirror. |
 
 > **Do you want to...**
 >
 > - Configure custom CA root certificate to access your services? See [Custom CA root certificate]({{<baseurl>}}/rancher/v2.x/en/installation/options/custom-ca-root-certificate/).
 > - Record all transactions with the Rancher API? See [API Auditing]({{<baseurl>}}/rancher/v2.x/en/installation/other-installation-methods/single-node-docker/advanced/#api-audit-log).
-
-- For Rancher prior to v2.3.0, you will need to mirror the `system-charts` repository to a location in your network that Rancher can reach. Then, after Rancher is installed, you will need to configure Rancher to use that repository. For details, refer to the documentation on [setting up the system charts for Rancher prior to v2.3.0.]({{<baseurl>}}/rancher/v2.x/en/installation/resources/local-system-charts/)
 
 Choose from the following options:
 
@@ -278,7 +269,7 @@ As of Rancher v2.5, privileged access is [required.](#privileged-access-for-ranc
 docker run -d --restart=unless-stopped \
     -p 80:80 -p 443:443 \
     -e CATTLE_SYSTEM_DEFAULT_REGISTRY=<REGISTRY.YOURDOMAIN.COM:PORT> \ # Set a default private registry to be used in Rancher
-    -e CATTLE_SYSTEM_CATALOG=bundled \ #Available as of v2.3.0, use the packaged Rancher system charts
+    -e CATTLE_SYSTEM_CATALOG=bundled \ # Use the packaged Rancher system charts
     --privileged \
     <REGISTRY.YOURDOMAIN.COM:PORT>/rancher/rancher:<RANCHER_VERSION_TAG>
 ```
@@ -317,7 +308,7 @@ docker run -d --restart=unless-stopped \
     -v /<CERT_DIRECTORY>/<PRIVATE_KEY.pem>:/etc/rancher/ssl/key.pem \
     -v /<CERT_DIRECTORY>/<CA_CERTS.pem>:/etc/rancher/ssl/cacerts.pem \
     -e CATTLE_SYSTEM_DEFAULT_REGISTRY=<REGISTRY.YOURDOMAIN.COM:PORT> \ # Set a default private registry to be used in Rancher
-    -e CATTLE_SYSTEM_CATALOG=bundled \ #Available as of v2.3.0, use the packaged Rancher system charts
+    -e CATTLE_SYSTEM_CATALOG=bundled \ # Use the packaged Rancher system charts
     --privileged \
     <REGISTRY.YOURDOMAIN.COM:PORT>/rancher/rancher:<RANCHER_VERSION_TAG>
 ```
@@ -353,18 +344,17 @@ docker run -d --restart=unless-stopped \
     -v /<CERT_DIRECTORY>/<FULL_CHAIN.pem>:/etc/rancher/ssl/cert.pem \
     -v /<CERT_DIRECTORY>/<PRIVATE_KEY.pem>:/etc/rancher/ssl/key.pem \
     -e CATTLE_SYSTEM_DEFAULT_REGISTRY=<REGISTRY.YOURDOMAIN.COM:PORT> \ # Set a default private registry to be used in Rancher
-    -e CATTLE_SYSTEM_CATALOG=bundled \ #Available as of v2.3.0, use the packaged Rancher system charts
+    -e CATTLE_SYSTEM_CATALOG=bundled \ # Use the packaged Rancher system charts
     --privileged
     <REGISTRY.YOURDOMAIN.COM:PORT>/rancher/rancher:<RANCHER_VERSION_TAG>
 ```
 
 {{% /accordion %}}
 
-If you are installing Rancher v2.3.0+, the installation is complete.
+
 
 > **Note:** If you don't intend to send telemetry data, opt out [telemetry]({{<baseurl>}}/rancher/v2.x/en/faq/telemetry/) during the initial login.
 
-If you are installing Rancher versions prior to v2.3.0, you will not be able to use the packaged system charts. Since the Rancher system charts are hosted in Github, an air gapped installation will not be able to access these charts. Therefore, you must [configure the Rancher system charts]({{<baseurl>}}/rancher/v2.x/en/installation/resources/local-system-charts/).
 
 {{% /tab %}}
 {{% /tabs %}}

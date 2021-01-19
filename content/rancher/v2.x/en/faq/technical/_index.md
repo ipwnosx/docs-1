@@ -20,17 +20,7 @@ New password for default administrator (user-xxxxx):
 <new_password>
 ```
 
-> #### **Important: RKE add-on install is only supported up to Rancher v2.0.8**
->
->If you are currently using the RKE add-on install method, see [Migrating from a Kubernetes Install with an RKE Add-on]({{<baseurl>}}/rancher/v2.x/en/upgrades/upgrades/migrating-from-rke-add-on/) for details on how to move to using the helm chart.
 
-Kubernetes install (RKE add-on):
-```
-$ KUBECONFIG=./kube_config_rancher-cluster.yml
-$ kubectl --kubeconfig $KUBECONFIG exec -n cattle-system $(kubectl --kubeconfig $KUBECONFIG get pods -n cattle-system -o json | jq -r '.items[] | select(.spec.containers[].name=="cattle-server") | .metadata.name') -- reset-password
-New password for default administrator (user-xxxxx):
-<new_password>
-```
 
 ### I deleted/deactivated the last admin, how can I fix it?
 Docker Install:
@@ -48,19 +38,6 @@ $ kubectl --kubeconfig $KUBECONFIG -n cattle-system exec $(kubectl --kubeconfig 
 New password for default administrator (user-xxxxx):
 <new_password>
 ```
-
-> #### **Important: RKE add-on install is only supported up to Rancher v2.0.8**
->
->If you are currently using the RKE add-on install method, see [Migrating from a Kubernetes Install with an RKE Add-on]({{<baseurl>}}/rancher/v2.x/en/upgrades/upgrades/migrating-from-rke-add-on/) for details on how to move to using the helm chart.
-
-Kubernetes install (RKE add-on):
-```
-$ KUBECONFIG=./kube_config_rancher-cluster.yml
-$ kubectl --kubeconfig $KUBECONFIG exec -n cattle-system $(kubectl --kubeconfig $KUBECONFIG get pods -n cattle-system -o json | jq -r '.items[] | select(.spec.containers[].name=="cattle-server") | .metadata.name') -- ensure-default-admin
-New password for default admin user (user-xxxxx):
-<new_password>
-```
-
 ### How can I enable debug logging?
 
 See [Troubleshooting: Logging]({{<baseurl>}}/rancher/v2.x/en/troubleshooting/logging/)

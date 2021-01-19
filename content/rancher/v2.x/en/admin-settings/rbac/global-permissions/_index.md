@@ -30,8 +30,6 @@ This section covers the following topics:
 
 # Restricted Admin
 
-_Available as of Rancher v2.5_
-
 A new `restricted-admin` role was created in Rancher v2.5 in order to prevent privilege escalation from the local Rancher server Kubernetes cluster. This role has full administrator access to all downstream clusters managed by Rancher, but it does not have permission to alter the local Kubernetes cluster.
 
 The `restricted-admin` can create other `restricted-admin` users with an equal level of access.
@@ -89,7 +87,7 @@ To see the default permissions for new users, go to the **Global** view and clic
 
 Permissions can be assigned to an individual user with [these steps.](#configuring-global-permissions-for-existing-individual-users)
 
-As of Rancher v2.4.0, you can [assign a role to everyone in the group at the same time](#configuring-global-permissions-for-groups) if the external authentication provider supports groups.
+You can [assign a role to everyone in the group at the same time](#configuring-global-permissions-for-groups) if the external authentication provider supports groups.
 
 # Custom Global Permissions
 
@@ -173,8 +171,6 @@ To configure permission for a user,
 > **Result:** The user's global permissions have been updated.
 
 ### Configuring Global Permissions for Groups
-
-_Available as of v2.4.0_
 
 If you have a group of individuals that need the same level of access in Rancher, it can save time to assign permissions to the entire group at once, so that the users in the group have the appropriate level of access the first time they sign into Rancher.
 

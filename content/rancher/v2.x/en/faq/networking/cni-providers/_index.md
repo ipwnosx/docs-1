@@ -44,7 +44,7 @@ CNI network providers using this network model include Calico and Romana.
 
 ### What CNI Providers are Provided by Rancher?
 
-Out-of-the-box, Rancher provides the following CNI network providers for Kubernetes clusters: Canal, Flannel, Calico and Weave (Weave is available as of v2.2.0). You can choose your CNI network provider when you create new Kubernetes clusters from Rancher.
+Out-of-the-box, Rancher provides the following CNI network providers for Kubernetes clusters: Canal, Flannel, Calico and Weave. You can choose your CNI network provider when you create new Kubernetes clusters from Rancher.
 
 #### Canal
 
@@ -96,8 +96,6 @@ For more information, see the following pages:
 
 ![Weave Logo]({{<baseurl>}}/img/rancher/weave-logo.png)
 
-_Available as of v2.2.0_
-
 Weave enables networking and network policy in Kubernetes clusters across the cloud. Additionally, it support encrypting traffic between the peers.
 
 Kubernetes workers should open TCP port `6783` (control port), UDP port `6783` and UDP port `6784` (data ports). See the [port requirements for user clusters]({{<baseurl>}}/rancher/v2.x/en/cluster-provisioning/node-requirements/#networking-requirements) for more details.
@@ -143,11 +141,12 @@ The following table summarizes different GitHub metrics to give you an idea of e
 | Weave | https://github.com/weaveworks/weave/ | 5737 | 559 | 73 |
 
 <br/>
+
 ### Which CNI Provider Should I Use?
 
 It depends on your project needs. There are many different providers, which each have various features and options. There isn't one provider that meets everyone's needs.
 
-As of Rancher v2.0.7, Canal is the default CNI network provider. We recommend it for most use cases. It provides encapsulated networking for containers with Flannel, while adding Calico network policies that can provide project/namespace isolation in terms of networking.
+Canal is the default CNI network provider. We recommend it for most use cases. It provides encapsulated networking for containers with Flannel, while adding Calico network policies that can provide project/namespace isolation in terms of networking.
 
 ### How can I configure a CNI network provider?
 

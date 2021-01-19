@@ -30,7 +30,7 @@ This section covers the following topics:
 
 The following table lists which node options are available for each type of cluster in Rancher. Click the links in the **Option** column for more detailed information about each feature.
 
-| Option                                           | [Nodes Hosted by an Infrastructure Provider][1]                                   | [Custom Node][2] | [Hosted Cluster][3] | [Imported Nodes][4] | Description                                                        |
+| Option                                           | [Nodes Hosted by an Infrastructure Provider][1]                                   | [Custom Node][2] | [Hosted Cluster][3] | [Registered Nodes][4] | Description                                                        |
 | ------------------------------------------------ | ------------------------------------------------ | ---------------- | ------------------- | ------------------- | ------------------------------------------------------------------ |
 | [Cordon](#cordoning-a-node)                      | ✓                                                | ✓                | ✓                   |                     | Marks the node as unschedulable.                                   |
 | [Drain](#draining-a-node)                        | ✓                                                | ✓                | ✓                   |                     | Marks the node as unschedulable _and_ evicts all pods.             |
@@ -43,7 +43,7 @@ The following table lists which node options are available for each type of clus
 [1]: {{<baseurl>}}/rancher/v2.x/en/cluster-provisioning/rke-clusters/node-pools/
 [2]: {{<baseurl>}}/rancher/v2.x/en/cluster-provisioning/rke-clusters/custom-nodes/
 [3]: {{<baseurl>}}/rancher/v2.x/en/cluster-provisioning/hosted-kubernetes-clusters/
-[4]: {{<baseurl>}}/rancher/v2.x/en/cluster-provisioning/imported-clusters/
+[4]: {{<baseurl>}}/rancher/v2.x/en/cluster-provisioning/registered-clusters/
 
 ### Nodes Hosted by an Infrastructure Provider
 
@@ -128,10 +128,6 @@ However, you can override the conditions draining when you initiate the drain. Y
 
 ### Aggressive and Safe Draining Options
 
-The node draining options are different based on your version of Rancher.
-
-{{% tabs %}}
-{{% tab "Rancher v2.2.x+" %}}
 There are two drain modes: aggressive and safe.
 
 - **Aggressive Mode**
@@ -143,25 +139,6 @@ There are two drain modes: aggressive and safe.
 - **Safe Mode**
 
     If a node has standalone pods or ephemeral data it will be cordoned but not drained.
-{{% /tab %}}
-{{% tab "Rancher prior to v2.2.x" %}}
-
-The following list describes each drain option:
-
-- **Even if there are pods not managed by a ReplicationController, ReplicaSet, Job, DaemonSet or StatefulSet**
-
-    These types of pods won't get rescheduled to a new node, since they do not have a controller. Kubernetes expects you to have your own logic that handles the deletion of these pods. Kubernetes forces you to choose this option (which will delete/evict these pods) or drain won't proceed.
-
-- **Even if there are DaemonSet-managed pods**
-
-    Similar to above, if you have any daemonsets, drain would proceed only if this option is selected. Even when this option is on, pods won't be deleted since they'll immediately be replaced. On startup, Rancher currently has a few daemonsets running by default in the system, so this option is turned on by default.
-
-- **Even if there are pods using emptyDir**
-
-    If a pod uses emptyDir to store local data, you might not be able to safely delete it, since the data in the emptyDir will be deleted once the pod is removed from the node. Similar to the first option, Kubernetes expects the implementation to decide what to do with these pods. Choosing this option will delete these pods.
-{{% /tab %}}
-{{% /tabs %}}
-
 ### Grace Period
 
 The timeout given to each pod for cleaning things up, so they will have chance to exit gracefully. For example, when pods might need to finish any outstanding requests, roll back transactions or save state to some external storage. If negative, the default value specified in the pod will be used.
@@ -183,8 +160,6 @@ Once drain successfully completes, the node will be in a state of `drained`. You
 >**Want to know more about cordon and drain?** See the [Kubernetes documentation](https://kubernetes.io/docs/tasks/administer-cluster/cluster-management/#maintenance-on-a-node).
 
 # Labeling a Node to be Ignored by Rancher
-
-_Available as of 2.3.3_
 
 Some solutions, such as F5's BIG-IP integration, may require creating a node that is never registered to a cluster.
 

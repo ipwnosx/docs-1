@@ -3,8 +3,6 @@ title: RKE Templates
 weight: 7010
 ---
 
-_Available as of Rancher v2.3.0_
-
 RKE templates are designed to allow DevOps and security teams to standardize and simplify the creation of Kubernetes clusters.
 
 RKE is the [Rancher Kubernetes Engine,]({{<baseurl>}}/rke/latest/en/) which is the tool that Rancher uses to provision Kubernetes clusters.
@@ -17,7 +15,7 @@ Admins control which cluster options can be changed by end users. RKE templates 
 
 If a cluster was created with an RKE template, you can't change it to a different RKE template. You can only update the cluster to a new revision of the same template.
 
-As of Rancher v2.3.3, you can [save the configuration of an existing cluster as an RKE template.]({{<baseurl>}}/rancher/v2.x/en/admin-settings/rke-templates/applying-templates/#converting-an-existing-cluster-to-use-an-rke-template) Then the cluster's settings can only be changed if the template is updated. The new template can also be used to launch new clusters.
+You can [save the configuration of an existing cluster as an RKE template.]({{<baseurl>}}/rancher/v2.x/en/admin-settings/rke-templates/applying-templates/#converting-an-existing-cluster-to-use-an-rke-template) Then the cluster's settings can only be changed if the template is updated. The new template can also be used to launch new clusters.
 
 The core features of RKE templates allow DevOps and security teams to:
 
@@ -52,7 +50,7 @@ RKE templates are for defining Kubernetes and Rancher settings. Node templates a
 
 RKE templates can be created from scratch to pre-define cluster configuration. They can be applied to launch new clusters, or templates can also be exported from existing running clusters.
 
-As of v2.3.3, the settings of an existing cluster can be [saved as an RKE template.]({{<baseurl>}}/rancher/v2.x/en/admin-settings/rke-templates/applying-templates/#converting-an-existing-cluster-to-use-an-rke-template) This creates a new template and binds the cluster settings to the template, so that the cluster can only be upgraded if the [template is updated]({{<baseurl>}}/rancher/v2.x/en/admin-settings/rke-templates/creating-and-revising/#updating-a-template), and the cluster is upgraded to [use a newer version of the template.]({{<baseurl>}}/rancher/v2.x/en/admin-settings/rke-templates/creating-and-revising/#upgrading-a-cluster-to-use-a-new-template-revision) The new template can also be used to create new clusters.
+The settings of an existing cluster can be [saved as an RKE template.]({{<baseurl>}}/rancher/v2.x/en/admin-settings/rke-templates/applying-templates/#converting-an-existing-cluster-to-use-an-rke-template) This creates a new template and binds the cluster settings to the template, so that the cluster can only be upgraded if the [template is updated]({{<baseurl>}}/rancher/v2.x/en/admin-settings/rke-templates/creating-and-revising/#updating-a-template), and the cluster is upgraded to [use a newer version of the template.]({{<baseurl>}}/rancher/v2.x/en/admin-settings/rke-templates/creating-and-revising/#upgrading-a-cluster-to-use-a-new-template-revision) The new template can also be used to create new clusters.
 
 
 # Example Scenarios
@@ -98,7 +96,7 @@ If the RKE template owner creates a new revision of the template, you can [upgra
 
 RKE templates can be created from scratch to pre-define cluster configuration. They can be applied to launch new clusters, or templates can also be exported from existing running clusters.
 
-As of Rancher v2.3.3, you can [save the configuration of an existing cluster as an RKE template.]({{<baseurl>}}/rancher/v2.x/en/admin-settings/rke-templates/applying-templates/#converting-an-existing-cluster-to-use-an-rke-template) Then the cluster's settings can only be changed if the template is updated.
+You can [save the configuration of an existing cluster as an RKE template.]({{<baseurl>}}/rancher/v2.x/en/admin-settings/rke-templates/applying-templates/#converting-an-existing-cluster-to-use-an-rke-template) Then the cluster's settings can only be changed if the template is updated.
 
 # Standardizing Hardware
 

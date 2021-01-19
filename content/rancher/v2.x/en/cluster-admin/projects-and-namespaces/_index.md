@@ -95,8 +95,6 @@ If you require another level of organization beyond the **Default** project, you
 
 ### The System Project
 
-_Available as of v2.0.7_
-
 When troubleshooting, you can view the `system` project to check if important namespaces in the Kubernetes system are working properly. This easily accessible project saves you from troubleshooting individual system namespace containers.
 
 To open it, open the **Global** menu, and then select the `system` project for your cluster.
@@ -172,8 +170,6 @@ To add members:
 
 ### 4. Optional: Add Resource Quotas
 
-_Available as of v2.1.0_
-
 Resource quotas limit the resources that a project (and its namespaces) can consume. For more information, see [Resource Quotas]({{<baseurl>}}/rancher/v2.x/en/k8s-in-rancher/projects-and-namespaces/resource-quotas).
 
 To add a resource quota,
@@ -181,7 +177,7 @@ To add a resource quota,
 1. Click **Add Quota**.
 1. Select a Resource Type. For more information, see [Resource Quotas.]({{<baseurl>}}/rancher/v2.x/en/k8s-in-rancher/projects-and-namespaces/resource-quotas/).
 1. Enter values for the **Project Limit** and the **Namespace Default Limit**.
-1. **Optional:** Specify **Container Default Resource Limit**, which will be applied to every container started in the project. The parameter is recommended if you have CPU or Memory limits set by the Resource Quota. It can be overridden on per an individual namespace or a container level. For more information, see [Container Default Resource Limit]({{<baseurl>}}/rancher/v2.x/en/project-admin/resource-quotas/) Note: This option is available as of v2.2.0.
+1. **Optional:** Specify **Container Default Resource Limit**, which will be applied to every container started in the project. The parameter is recommended if you have CPU or Memory limits set by the Resource Quota. It can be overridden on per an individual namespace or a container level. For more information, see [Container Default Resource Limit]({{<baseurl>}}/rancher/v2.x/en/project-admin/resource-quotas/)
 1. Click **Create**.
 
 **Result:** Your project is created. You can view it from the cluster's **Projects/Namespaces** view.

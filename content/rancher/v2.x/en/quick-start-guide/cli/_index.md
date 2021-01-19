@@ -22,8 +22,6 @@ Run `kubectl cluster-info` or `kubectl get pods` successfully.
 
 ## Authentication with kubectl and kubeconfig Tokens with TTL
 
-_**Available as of v2.4.6**_ 
-
 _Requirements_
 
 If admins have [enforced TTL on kubeconfig tokens]({{<baseurl>}}/rancher/v2.x/en/api/api-tokens/#setting-ttl-on-kubeconfig-tokens), the kubeconfig file requires the [Rancher cli](../cli) to be present in your PATH when you run `kubectl`. Otherwise, you’ll see error like: 

@@ -38,8 +38,6 @@ The creation of this service principal returns three pieces of identification in
 
 # Creating an Azure Cluster
 
-{{%tabs %}}
-{{% tab "Rancher v2.2.0+" %}}
 
 1. [Create your cloud credentials](#1-create-your-cloud-credentials)
 2. [Create a node template with your cloud credentials](#2-create-a-node-template-with-your-cloud-credentials)
@@ -86,33 +84,6 @@ You can access your cluster after its state is updated to **Active.**
 
 - `Default`, containing the `default` namespace
 - `System`, containing the `cattle-system`, `ingress-nginx`, `kube-public`, and `kube-system` namespaces
-
-{{% /tab %}}
-{{% tab "Rancher prior to v2.2.0" %}}
-
-Use Rancher to create a Kubernetes cluster in Azure.
-
-1. From the **Clusters** page, click **Add Cluster**.
-1. Choose **Azure**.
-1. Enter a **Cluster Name**.
-1. Use **Member Roles** to configure user authorization for the cluster. Click **Add Member** to add users that can access the cluster. Use the **Role** drop-down to set permissions for each user.
-1. Use **Cluster Options** to choose the version of Kubernetes that will be installed, what network provider will be used and if you want to enable project network isolation. To see more cluster options, click on **Show advanced options.** For help configuring the cluster, refer to the [RKE cluster configuration reference.]({{<baseurl>}}/rancher/v2.x/en/cluster-provisioning/rke-clusters/options)
-1. Add one or more node pools to your cluster. Each node pool uses a node template to provision new nodes. To create a node template, click **Add Node Template** and complete the **Azure Options** form. For help filling out the form, refer to the [Azure node template configuration reference.](./azure-node-template-config) For more information about node pools, including best practices for assigning Kubernetes roles to them, see [this section.]({{<baseurl>}}/rancher/v2.x/en/cluster-provisioning/rke-clusters/node-pools) 
-1. Review your options to confirm they're correct. Then click **Create**.
-
-**Result:** 
-
-Your cluster is created and assigned a state of **Provisioning.** Rancher is standing up your cluster.
-
-You can access your cluster after its state is updated to **Active.**
-
-**Active** clusters are assigned two Projects: 
-
-- `Default`, containing the `default` namespace
-- `System`, containing the `cattle-system`, `ingress-nginx`, `kube-public`, and `kube-system` namespaces
-
-{{% /tab %}}
-{{% /tabs %}}
 
 ### Optional Next Steps
 

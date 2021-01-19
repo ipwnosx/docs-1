@@ -19,14 +19,10 @@ Then you will create an EC2 cluster in Rancher, and when configuring the new clu
   - [Example IAM Policy to allow encrypted EBS volumes](#example-iam-policy-to-allow-encrypted-ebs-volumes)
 - **IAM Policy added as Permission** to the user. See [Amazon Documentation: Adding Permissions to a User (Console)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html#users_change_permissions-add-console) how to attach it to an user.
 
-> **Note:** Rancher v2.4.6 and v2.4.7 had an issue where the `kms:ListKeys` permission was required to create, edit, or clone Amazon EC2 node templates. This requirement was removed in v2.4.8.
 
 # Creating an EC2 Cluster
 
 The steps to create a cluster differ based on your Rancher version.
-
-{{% tabs %}}
-{{% tab "Rancher v2.2.0+" %}}
 
 1. [Create your cloud credentials](#1-create-your-cloud-credentials)
 2. [Create a node template with your cloud credentials and information from EC2](#2-create-a-node-template-with-your-cloud-credentials-and-information-from-ec2)
@@ -74,33 +70,6 @@ You can access your cluster after its state is updated to **Active.**
 
 - `Default`, containing the `default` namespace
 - `System`, containing the `cattle-system`, `ingress-nginx`, `kube-public`, and `kube-system` namespaces
-
-{{% /tab %}}
-{{% tab "Rancher prior to v2.2.0" %}}
-
-1. From the **Clusters** page, click **Add Cluster**.
-1. Choose **Amazon EC2**.
-1. Enter a **Cluster Name**.
-1. Use **Member Roles** to configure user authorization for the cluster. Click **Add Member** to add users that can access the cluster. Use the **Role** drop-down to set permissions for each user.
-1. Use **Cluster Options** to choose the version of Kubernetes that will be installed, what network provider will be used and if you want to enable project network isolation. To see more cluster options, click on **Show advanced options.** Refer to [Selecting Cloud Providers]({{<baseurl>}}/rancher/v2.x/en/cluster-provisioning/rke-clusters/options/cloud-providers/) to configure the Kubernetes Cloud Provider. For help configuring the cluster, refer to the [RKE cluster configuration reference.]({{<baseurl>}}/rancher/v2.x/en/cluster-provisioning/rke-clusters/options)
-1. Add one or more node pools to your cluster. Each node pool uses a node template to provision new nodes. For more information about node pools, including best practices for assigning Kubernetes roles to them, see [this section.]({{<baseurl>}}/rancher/v2.x/en/cluster-provisioning/rke-clusters/node-pools) To create a node template, click **Add Node Template**. For help filling out the node template, refer to [EC2 Node Template Configuration.](./ec2-node-template-config)
-1. Click **Create**.
-1. **Optional:** Add additional node pools.
-1. Review your cluster settings to confirm they are correct. Then click **Create**.
-
-**Result:** 
-
-Your cluster is created and assigned a state of **Provisioning.** Rancher is standing up your cluster.
-
-You can access your cluster after its state is updated to **Active.**
-
-**Active** clusters are assigned two Projects: 
-
-- `Default`, containing the `default` namespace
-- `System`, containing the `cattle-system`, `ingress-nginx`, `kube-public`, and `kube-system` namespaces
-
-{{% /tab %}}
-{{% /tabs %}}
 ### Optional Next Steps
 
 After creating your cluster, you can access it through the Rancher UI. As a best practice, we recommend setting up these alternate ways of accessing your cluster:
@@ -109,8 +78,6 @@ After creating your cluster, you can access it through the Rancher UI. As a best
 - **Access your cluster with the kubectl CLI, using the authorized cluster endpoint:** Follow [these steps]({{<baseurl>}}/rancher/v2.x/en/cluster-admin/cluster-access/kubectl/#authenticating-directly-with-a-downstream-cluster) to access your cluster with kubectl directly, without authenticating through Rancher. We recommend setting up this alternative method to access your cluster so that in case you can’t connect to Rancher, you can still access the cluster.
 
 # IAM Policies
-
-> **Note:** Rancher v2.4.6 and v2.4.7 had an issue where the `kms:ListKeys` permission was required to create, edit, or clone Amazon EC2 node templates. This requirement was removed in v2.4.8.
 
 ### Example IAM Policy
 

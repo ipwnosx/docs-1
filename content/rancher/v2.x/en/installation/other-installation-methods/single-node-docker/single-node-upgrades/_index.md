@@ -252,8 +252,6 @@ As of Rancher v2.5, privileged access is [required.]({{<baseurl>}}/rancher/v2.x/
 
 For security purposes, SSL (Secure Sockets Layer) is required when using Rancher. SSL secures all Rancher network communication, like when you login or interact with a cluster.
 
-> For Rancher versions from v2.2.0 to v2.2.x, you will need to mirror the `system-charts` repository to a location in your network that Rancher can reach. Then, after Rancher is installed, you will need to configure Rancher to use that repository. For details, refer to the documentation on [setting up the system charts for Rancher prior to v2.3.0.]({{<baseurl>}}/rancher/v2.x/en/installation/resources/local-system-charts/)
-
 When starting the new Rancher server container, choose from the following options:
 
 ### Option A: Default Self-Signed Certificate
@@ -272,7 +270,7 @@ Placeholder | Description
       --restart=unless-stopped \
       -p 80:80 -p 443:443 \
       -e CATTLE_SYSTEM_DEFAULT_REGISTRY=<REGISTRY.YOURDOMAIN.COM:PORT> \ # Set a default private registry to be used in Rancher
-      -e CATTLE_SYSTEM_CATALOG=bundled \ #Available as of v2.3.0, use the packaged Rancher system charts
+      -e CATTLE_SYSTEM_CATALOG=bundled \ # Use the packaged Rancher system charts
       --privileged \
       <REGISTRY.YOURDOMAIN.COM:PORT>/rancher/rancher:<RANCHER_VERSION_TAG>
 ```
@@ -304,7 +302,7 @@ docker run -d --restart=unless-stopped \
     -v /<CERT_DIRECTORY>/<PRIVATE_KEY.pem>:/etc/rancher/ssl/key.pem \
     -v /<CERT_DIRECTORY>/<CA_CERTS.pem>:/etc/rancher/ssl/cacerts.pem \
     -e CATTLE_SYSTEM_DEFAULT_REGISTRY=<REGISTRY.YOURDOMAIN.COM:PORT> \ # Set a default private registry to be used in Rancher
-    -e CATTLE_SYSTEM_CATALOG=bundled \ #Available as of v2.3.0, use the packaged Rancher system charts
+    -e CATTLE_SYSTEM_CATALOG=bundled \ # Use the packaged Rancher system charts
     --privileged \
     <REGISTRY.YOURDOMAIN.COM:PORT>/rancher/rancher:<RANCHER_VERSION_TAG>
 ```
@@ -337,7 +335,7 @@ docker run -d --volumes-from rancher-data \
      -v /<CERT_DIRECTORY>/<FULL_CHAIN.pem>:/etc/rancher/ssl/cert.pem \
      -v /<CERT_DIRECTORY>/<PRIVATE_KEY.pem>:/etc/rancher/ssl/key.pem \
      -e CATTLE_SYSTEM_DEFAULT_REGISTRY=<REGISTRY.YOURDOMAIN.COM:PORT> \ # Set a default private registry to be used in Rancher
-     -e CATTLE_SYSTEM_CATALOG=bundled \ #Available as of v2.3.0, use the packaged Rancher system charts
+     -e CATTLE_SYSTEM_CATALOG=bundled \ # Use the packaged Rancher system charts
      --privileged
      <REGISTRY.YOURDOMAIN.COM:PORT>/rancher/rancher:<RANCHER_VERSION_TAG>
 ```

@@ -30,11 +30,7 @@ Logging is helpful because it allows you to:
 
 Rancher can integrate with Elasticsearch, splunk, kafka, syslog, and fluentd.
 
-Logging was improved in Rancher v2.5. 
-
-- If you are using Rancher v2.5, refer to the logging documentation [here.]({{<baseurl>}}/rancher/v2.x/en/logging/v2.5)
-- If you are using Rancher v2.0.x-v2.4.x, refer to the logging documentation [here.]({{<baseurl>}}/rancher/v2.x/en/logging/v2.0.x-v2.4.x)
-
+For more information, refer to the logging documentation [here.]({{<baseurl>}}/rancher/v2.x/en/logging/)
 # Monitoring and Alerts
 
 Using Rancher, you can monitor the state and processes of your cluster nodes, Kubernetes components, and software deployments through integration with [Prometheus](https://prometheus.io/), a leading open-source monitoring solution.
@@ -45,29 +41,21 @@ Notifiers are services that inform you of alert events. You can configure notifi
 
 Alerts are rules that trigger those notifications. Before you can receive alerts, you must configure one or more notifier in Rancher. The scope for alerts can be set at either the cluster or project level.
 
-- If you are using Rancher v2.5, refer to the monitoring documentation [here.]({{<baseurl>}}/rancher/v2.x/en/monitoring-alerting/v2.5)
-- If you are using Rancher v2.0.x-v2.4.x, refer to the monitoring documentation [here.]({{<baseurl>}}/rancher/v2.x/en/monitoring-alerting/v2.0.x-v2.4.x)
+For more information, refer to the monitoring documentation [here.]({{<baseurl>}}/rancher/v2.x/en/monitoring-alerting/)
 
 # Istio
-
-_Available as of v2.3_
 
 [Istio](https://istio.io/) is an open-source tool that makes it easier for DevOps teams to observe, control, troubleshoot, and secure the traffic within a complex network of microservices.
 
 Rancher's integration with Istio was improved in Rancher v2.5.
 
-- If you are using Rancher v2.5, refer to the Istio documentation [here.]({{<baseurl>}}/rancher/v2.x/en/istio/v2.5)
-- If you are using Rancher v2.3.x-v2.4.x, refer to the Istio documentation [here.]({{<baseurl>}}/rancher/v2.x/en/istio/v2.3.x-v2.4.x)
-
+For more information, refer to the Istio documentation [here.]({{<baseurl>}}/rancher/v2.x/en/istio)
 # OPA Gatekeeper
 
 [OPA Gatekeeper](https://github.com/open-policy-agent/gatekeeper) is an open-source project that provides integration between OPA and Kubernetes to provide policy control via admission controller webhooks. For details on how to enable Gatekeeper in Rancher, refer to the [OPA Gatekeeper section.]({{<baseurl>}}/rancher/v2.x/en/opa-gatekeper)
-
 
 # CIS Scans
 
 Rancher can run a security scan to check whether Kubernetes is deployed according to security best practices as defined in the CIS Kubernetes Benchmark.
 
-If you are using Rancher v2.5, refer to the CIS scan documentation [here.]({{<baseurl>}}/rancher/v2.x/en/cis-scans/v2.5)
-
-If you are using Rancher v2.4, refer to the CIS scan documentation [here.]({{<baseurl>}}/rancher/v2.x/en/cis-scans/v2.4)
+For more information, refer to the CIS scan documentation [here.]({{<baseurl>}}/rancher/v2.x/en/cis-scans)

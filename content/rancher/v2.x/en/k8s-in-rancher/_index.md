@@ -1,6 +1,6 @@
 ---
 title: Kubernetes Resources
-weight: 19
+weight: 18
 aliases:
   - /rancher/v2.x/en/concepts/
   - /rancher/v2.x/en/tasks/

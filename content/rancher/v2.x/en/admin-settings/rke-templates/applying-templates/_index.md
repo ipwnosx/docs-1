@@ -7,7 +7,7 @@ You can create a cluster from an RKE template that you created, or from a templa
 
 RKE templates can be applied to new clusters.
 
-As of Rancher v2.3.3, you can [save the configuration of an existing cluster as an RKE template.](#converting-an-existing-cluster-to-use-an-rke-template) Then the cluster's settings can only be changed if the template is updated.
+You can [save the configuration of an existing cluster as an RKE template.](#converting-an-existing-cluster-to-use-an-rke-template) Then the cluster's settings can only be changed if the template is updated.
 
 You can't change a cluster to use a different RKE template. You can only update the cluster to a new revision of the same template.
 
@@ -38,13 +38,11 @@ When the template owner creates a template, each setting has a switch in the Ran
 
 If a cluster was created from an RKE template, you can edit the cluster to update the cluster to a new revision of the template.
 
-As of Rancher v2.3.3, an existing cluster's settings can be [saved as an RKE template.](#converting-an-existing-cluster-to-use-an-rke-template) In that situation, you can also edit the cluster to update the cluster to a new revision of the template.
+An existing cluster's settings can be [saved as an RKE template.](#converting-an-existing-cluster-to-use-an-rke-template) In that situation, you can also edit the cluster to update the cluster to a new revision of the template.
 
 > **Note:** You can't change the cluster to use a different RKE template. You can only update the cluster to a new revision of the same template.
 
 ### Converting an Existing Cluster to Use an RKE Template
-
-_Available as of v2.3.3_
 
 This section describes how to create an RKE template from an existing cluster.
 

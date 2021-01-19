@@ -13,8 +13,6 @@ This kubeconfig file and its contents are specific to the cluster you are viewin
 
 After you download the kubeconfig file, you will be able to use the kubeconfig file and its Kubernetes [contexts](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#kubectl-context-and-configuration) to access your downstream cluster.
 
-_Available as of v2.4.6_ 
-
 If admins have [enforced TTL on kubeconfig tokens]({{<baseurl>}}/rancher/v2.x/en/api/api-tokens/#setting-ttl-on-kubeconfig-tokens), the kubeconfig file requires [rancher cli](../cli) to be present in your PATH. 
 
 
@@ -40,8 +38,6 @@ The `kube-api-auth` microservice is deployed to provide the user authentication 
 During cluster provisioning, the file `/etc/kubernetes/kube-api-authn-webhook.yaml` is deployed and `kube-apiserver` is configured with `--authentication-token-webhook-config-file=/etc/kubernetes/kube-api-authn-webhook.yaml`. This configures the `kube-apiserver` to query `http://127.0.0.1:6440/v1/authenticate` to determine authentication for bearer tokens.
 
 The scheduling rules for `kube-api-auth` are listed below:
-
-_Applies to v2.3.0 and higher_
 
 | Component            | nodeAffinity nodeSelectorTerms             | nodeSelector | Tolerations                                                                    |
 | -------------------- | ------------------------------------------ | ------------ | ------------------------------------------------------------------------------ |

@@ -5,8 +5,6 @@ aliases:
     - /rancher/v2.x/en/tasks/global-configuration/authentication/freeipa/
 ---
 
-_Available as of v2.0.5_
-
 If your organization uses FreeIPA for user authentication, you can configure Rancher to allow your users to login using their FreeIPA credentials.
 
 >**Prerequisites:**

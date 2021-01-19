@@ -12,7 +12,7 @@ You can configure the Kubernetes options one of two ways:
 - [Rancher UI](#rancher-ui-options): Use the Rancher UI to select options that are commonly customized when setting up a Kubernetes cluster.
 - [Cluster Config File](#cluster-config-file): Instead of using the Rancher UI to choose Kubernetes options for the cluster, advanced users can create an RKE config file. Using a config file allows you to set any of the options available in an RKE installation, except for system_images configuration, by specifying them in YAML.
 
-In Rancher v2.0.0-v2.2.x, the RKE cluster config file in Rancher is identical to the  [cluster config file for the Rancher Kubernetes Engine]({{<baseurl>}}/rke/latest/en/config-options/), which is the tool Rancher uses to provision clusters. In Rancher v2.3.0, the RKE information is still included in the config file, but it is separated from other options, so that the RKE cluster config options are nested under the `rancher_kubernetes_engine_config` directive. For more information, see the section about the [cluster config file.](#cluster-config-file)
+The RKE cluster config options are nested under the `rancher_kubernetes_engine_config` directive. For more information, see the section about the [cluster config file.](#cluster-config-file)
 
 This section is a cluster configuration reference, covering the following topics:
 
@@ -33,7 +33,6 @@ This section is a cluster configuration reference, covering the following topics
   - [Recurring etcd snapshots](#recurring-etcd-snapshots)
 - [Cluster config file](#cluster-config-file)
   - [Config file structure in Rancher v2.3.0+](#config-file-structure-in-rancher-v2-3-0)
-  - [Config file structure in Rancher v2.0.0-v2.2.x](#config-file-structure-in-rancher-v2-0-0-v2-2-x)
   - [Default DNS provider](#default-dns-provider)
 - [Rancher specific parameters](#rancher-specific-parameters)
 
@@ -56,22 +55,12 @@ Out of the box, Rancher is compatible with the following network providers:
 - [Canal](https://github.com/projectcalico/canal)
 - [Flannel](https://github.com/coreos/flannel#flannel)
 - [Calico](https://docs.projectcalico.org/v3.11/introduction/)
-- [Weave](https://github.com/weaveworks/weave) (Available as of v2.2.0)
+- [Weave](https://github.com/weaveworks/weave)
 
 **Notes on Canal:**
   
-In v2.0.0 - v2.0.4 and v2.0.6, this was the default option for these clusters was Canal with network isolation. With the network isolation automatically enabled, it prevented any pod communication between [projects]({{<baseurl>}}/rancher/v2.x/en/k8s-in-rancher/projects-and-namespaces/).
+If you use Canal, you also have the option of using **Project Network Isolation**, which will enable or disable communication between pods in different [projects]({{<baseurl>}}/rancher/v2.x/en/k8s-in-rancher/projects-and-namespaces/).
 
-As of v2.0.7, if you use Canal, you also have the option of using **Project Network Isolation**, which will enable or disable communication between pods in different [projects]({{<baseurl>}}/rancher/v2.x/en/k8s-in-rancher/projects-and-namespaces/).
-
->**Attention Rancher v2.0.0 - v2.0.6 Users**
->
->- In previous Rancher releases, Canal isolates project network communications with no option to disable it. If you are using any of these Rancher releases, be aware that using Canal prevents all communication between pods in different projects.
->- If you have clusters using Canal and are upgrading to v2.0.7, those clusters enable Project Network Isolation by default. If you want to disable Project Network Isolation, edit the cluster and disable the option.
-
-**Notes on Flannel:**
-
-In v2.0.5, this was the default option, which did not prevent any network isolation between projects.
 
 **Notes on Weave:**
 
@@ -87,8 +76,6 @@ If you want to see all the configuration options for a cluster, please click **S
 
 ### Private registries
 
-_Available as of v2.2.0_
-
 The cluster-level private registry configuration is only used for provisioning clusters.
 
 There are two main ways to set up private registries in Rancher: by setting up the [global default registry]({{<baseurl>}}/rancher/v2.x/en/admin-settings/config-private-registry) through the **Settings** tab in the global view, and by setting up a private registry in the advanced options in the cluster-level settings. The global default registry is intended to be used for air-gapped setups, for registries that do not require credentials. The cluster-level private registry is intended to be used in all setups in which the private registry requires credentials.
@@ -103,8 +90,6 @@ The private registry configuration option tells Rancher where to pull the [syste
 See the [RKE documentation on private registries]({{<baseurl>}}/rke/latest/en/config-options/private-registries/) for more information on the private registry for components applied during the provisioning of the cluster.
 
 ### Authorized Cluster Endpoint
-
-_Available as of v2.2.0_
 
 Authorized Cluster Endpoint can be used to directly access the Kubernetes API server, without requiring communication through Rancher.
 
@@ -156,20 +141,16 @@ Option to enable or disable [recurring etcd snapshots]({{<baseurl>}}/rke/latest/
 
 Instead of using the Rancher UI to choose Kubernetes options for the cluster, advanced users can create an RKE config file. Using a config file allows you to set any of the [options available]({{<baseurl>}}/rke/latest/en/config-options/) in an RKE installation, except for `system_images` configuration. The `system_images` option is not supported when creating a cluster with the Rancher UI or API.
 
->**Note:** In Rancher v2.0.5 and v2.0.6, the names of services in the Config File (YAML) should contain underscores only: `kube_api` and `kube_controller`.
-
 - To edit an RKE config file directly from the Rancher UI, click **Edit as YAML**.
 - To read from an existing RKE file, click **Read from a file**.
 
 ![image]({{<baseurl>}}/img/rancher/cluster-options-yaml.png)
 
-The structure of the config file is different depending on your version of Rancher. Below are example config files for Rancher v2.0.0-v2.2.x and for Rancher v2.3.0+.
-
 ### Config File Structure in Rancher v2.3.0+
 
 RKE (Rancher Kubernetes Engine) is the tool that Rancher uses to provision Kubernetes clusters. Rancher's cluster config files used to have the same structure as [RKE config files,]({{<baseurl>}}/rke/latest/en/example-yamls/) but the structure changed so that in Rancher, RKE cluster config items are separated from non-RKE config items. Therefore, configuration for your cluster needs to be nested under the `rancher_kubernetes_engine_config` directive in the cluster config file. Cluster config files created with earlier versions of Rancher will need to be updated for this format. An example cluster config file is included below.
 
-{{% accordion id="v2.3.0-cluster-config-file" label="Example Cluster Config File for Rancher v2.3.0+" %}}
+{{% accordion id="v2.3.0-cluster-config-file" label="Example Cluster Config File" %}}
 
 ```yaml
 #
@@ -263,89 +244,6 @@ windows_prefered_cluster: false
 ```
 {{% /accordion %}}
 
-### Config File Structure in Rancher v2.0.0-v2.2.x
-
-An example cluster config file is included below.
-
-{{% accordion id="prior-to-v2.3.0-cluster-config-file" label="Example Cluster Config File for Rancher v2.0.0-v2.2.x" %}}
-```yaml
-addon_job_timeout: 30
-authentication:
-  strategy: x509
-ignore_docker_version: true
-#
-# # Currently only nginx ingress provider is supported.
-# # To disable ingress controller, set `provider: none`
-# # To enable ingress on specific nodes, use the node_selector, eg:
-#    provider: nginx
-#    node_selector:
-#      app: ingress
-#
-ingress:
-  provider: nginx
-kubernetes_version: v1.15.3-rancher3-1
-monitoring:
-  provider: metrics-server
-#
-#   If you are using calico on AWS
-#
-#    network:
-#      plugin: calico
-#      calico_network_provider:
-#        cloud_provider: aws
-#
-# # To specify flannel interface
-#
-#    network:
-#      plugin: flannel
-#      flannel_network_provider:
-#      iface: eth1
-#
-# # To specify flannel interface for canal plugin
-#
-#    network:
-#      plugin: canal
-#      canal_network_provider:
-#        iface: eth1
-#
-network:
-  options:
-    flannel_backend_type: vxlan
-  plugin: canal
-#
-#    services:
-#      kube-api:
-#        service_cluster_ip_range: 10.43.0.0/16
-#      kube-controller:
-#        cluster_cidr: 10.42.0.0/16
-#        service_cluster_ip_range: 10.43.0.0/16
-#      kubelet:
-#        cluster_domain: cluster.local
-#        cluster_dns_server: 10.43.0.10
-#
-services:
-  etcd:
-    backup_config:
-      enabled: true
-      interval_hours: 12
-      retention: 6
-      safe_timestamp: false
-    creation: 12h
-    extra_args:
-      election-timeout: 5000
-      heartbeat-interval: 500
-    gid: 0
-    retention: 72h
-    snapshot: false
-    uid: 0
-  kube_api:
-    always_pull_images: false
-    pod_security_policy: false
-    service_node_port_range: 30000-32767
-ssh_agent_auth: false
-```
-{{% /accordion %}}
-
 ### Default DNS provider
 
 The table below indicates what DNS provider is deployed by default. See [RKE documentation on DNS provider]({{<baseurl>}}/rke/latest/en/config-options/add-ons/dns/) for more information how to configure a different DNS provider. CoreDNS can only be used on Kubernetes v1.12.0 and higher.
@@ -357,8 +255,6 @@ The table below indicates what DNS provider is deployed by default. See [RKE doc
 | v2.2.4 and lower | any | kube-dns |
 
 # Rancher specific parameters
-
-_Available as of v2.2.0_
 
 Besides the RKE config file options, there are also Rancher specific settings that can be configured in the Config File (YAML):
 
@@ -388,8 +284,6 @@ local_cluster_auth_endpoint:
 ```
 
 ### Custom Network Plug-in
-
-_Available as of v2.2.4_
 
 You can add a custom network plug-in by using the [user-defined add-on functionality]({{<baseurl>}}/rke/latest/en/config-options/add-ons/user-defined-add-ons/) of RKE. You define any add-on that you want deployed after the Kubernetes cluster is deployed.
 

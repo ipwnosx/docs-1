@@ -110,8 +110,6 @@ The `rancher-images.txt` is expected to be on the workstation in the same direct
 {{% /tab %}}
 {{% tab "Linux and Windows Clusters" %}}
 
-_Available as of v2.3.0_
-
 For Rancher servers that will provision Linux and Windows clusters, there are distinctive steps to populate your private registry for the Windows images and the Linux images. Since a Windows cluster is a mix of Linux and Windows nodes, the Linux images pushed into the private registry are manifests.
 
 # Windows Steps
@@ -195,7 +193,7 @@ The `rancher-windows-images.txt` is expected to be on the workstation in the sam
 
 # Linux Steps
 
-The Linux images needs to be collected and pushed from a Linux host, but _must be done after_ populating the Windows images into the private registry. These step are different from the Linux only steps as the Linux images that are pushed will actually manifests that support Windows and Linux images.
+The Linux images need to be collected and pushed from a Linux host, but _must be done after_ populating the Windows images into the private registry. These step are different from the Linux only steps as the Linux images that are pushed will actually manifests that support Windows and Linux images.
 
 1. <a href="#linux-1">Find the required assets for your Rancher version</a>
 2. <a href="#linux-2">Collect all the required images</a>
@@ -250,13 +248,11 @@ The workstation must have Docker 18.02+ in order to support manifests, which are
 ### 3. Save the images to your workstation
 
 1. Make `rancher-save-images.sh` an executable:
-
    ```
    chmod +x rancher-save-images.sh
    ```
 
 1. Run `rancher-save-images.sh` with the `rancher-images.txt` image list to create a tarball of all the required images:
-
    ```plain
    ./rancher-save-images.sh --image-list ./rancher-images.txt
    ```
@@ -272,16 +268,14 @@ Move the images in the `rancher-images.tar.gz` to your private registry using th
 The image list, `rancher-images.txt` or `rancher-windows-images.txt`, is expected to be on the workstation in the same directory that you are running the `rancher-load-images.sh` script. The `rancher-images.tar.gz` should also be in the same directory.
 
 1. Log into your private registry if required:
-
-```plain
-docker login <REGISTRY.YOURDOMAIN.COM:PORT>
-```
+   ```plain
+   docker login <REGISTRY.YOURDOMAIN.COM:PORT>
+   ```
 
 1. Make `rancher-load-images.sh` an executable:
-
-```
-chmod +x rancher-load-images.sh
-```
+   ```
+   chmod +x rancher-load-images.sh
+   ```
 
 1. Use `rancher-load-images.sh` to extract, tag and push the images from `rancher-images.tar.gz` to your private registry:
 

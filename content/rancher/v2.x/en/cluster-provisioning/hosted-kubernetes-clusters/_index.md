@@ -11,14 +11,12 @@ In this use case, Rancher sends a request to a hosted provider using the provide
 
 Rancher supports the following Kubernetes providers:
 
-Kubernetes Providers | Available as of  |
- --- | --- |
-[Google GKE (Google Kubernetes Engine)](https://cloud.google.com/kubernetes-engine/) | v2.0.0 |
-[Amazon EKS (Amazon Elastic Container Service for Kubernetes)](https://aws.amazon.com/eks/) | v2.0.0 |
-[Microsoft AKS (Azure Kubernetes Service)](https://azure.microsoft.com/en-us/services/kubernetes-service/) | v2.0.0 |
-[Alibaba ACK (Alibaba Cloud Container Service for Kubernetes)](https://www.alibabacloud.com/product/kubernetes) | v2.2.0 |
-[Tencent TKE (Tencent Kubernetes Engine)](https://intl.cloud.tencent.com/product/tke) | v2.2.0 |
-[Huawei CCE (Huawei Cloud Container Engine)](https://www.huaweicloud.com/en-us/product/cce.html) | v2.2.0 |
+- [Google GKE (Google Kubernetes Engine)](https://cloud.google.com/kubernetes-engine/)
+- [Amazon EKS (Amazon Elastic Container Service for Kubernetes)](https://aws.amazon.com/eks/)
+- [Microsoft AKS (Azure Kubernetes Service)](https://azure.microsoft.com/en-us/services/kubernetes-service/) 
+- [Alibaba ACK (Alibaba Cloud Container Service for Kubernetes)](https://www.alibabacloud.com/product/kubernetes) 
+- [Tencent TKE (Tencent Kubernetes Engine)](https://intl.cloud.tencent.com/product/tke)
+- [Huawei CCE (Huawei Cloud Container Engine)](https://www.huaweicloud.com/en-us/product/cce.html)
 
 ## Hosted Kubernetes Provider Authentication
 

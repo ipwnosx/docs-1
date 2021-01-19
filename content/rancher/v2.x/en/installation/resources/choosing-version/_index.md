@@ -33,7 +33,7 @@ Rancher provides several different Helm chart repositories to choose from. We al
 <br/>
 Instructions on when to select these repos are available below in [Switching to a Different Helm Chart Repository](#switching-to-a-different-helm-chart-repository).
 
-> **Note:** The introduction of the `rancher-latest` and `rancher-stable` Helm Chart repositories was introduced after Rancher v2.1.0, so the `rancher-stable` repository contains some Rancher versions that were never marked as `rancher/rancher:stable`. The versions of Rancher that were tagged as `rancher/rancher:stable` prior to v2.1.0 are v2.0.4, v2.0.6, v2.0.8. Post v2.1.0, all charts in the `rancher-stable` repository will correspond with any Rancher version tagged as `stable`.
+> **Note:** All charts in the `rancher-stable` repository will correspond with any Rancher version tagged as `stable`.
 
 ### Helm Chart Versions
 
@@ -45,8 +45,6 @@ For more information, see https://helm.sh/docs/helm/helm_search_repo/
 
 To fetch a specific version of your chosen repo, define the `--version` parameter like in the following example:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;`helm fetch rancher-stable/rancher --version=2.4.8`
-
-For the Rancher v2.1.x versions, there were some Helm charts where the version was a build number, i.e. `yyyy.mm.<build-number>`. These charts have been replaced with the equivalent Rancher version and are no longer available.
 
 ### Switching to a Different Helm Chart Repository
 

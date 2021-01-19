@@ -3,13 +3,11 @@ title: Restoring a Cluster from Backup
 weight: 2050
 ---
 
-_Available as of v2.2.0_
-
 etcd backup and recovery for [Rancher launched Kubernetes clusters]({{<baseurl>}}/rancher/v2.x/en/cluster-provisioning/rke-clusters/) can be easily performed. Snapshots of the etcd database are taken and saved either locally onto the etcd nodes or to a S3 compatible target. The advantages of configuring S3 is that if all etcd nodes are lost, your snapshot is saved remotely and can be used to restore the cluster.
 
 Rancher recommends enabling the [ability to set up recurring snapshots of etcd]({{<baseurl>}}/rancher/v2.x/en/cluster-admin/backing-up-etcd/#configuring-recurring-snapshots), but [one-time snapshots]({{<baseurl>}}/rancher/v2.x/en/cluster-admin/backing-up-etcd/#one-time-snapshots) can easily be taken as well. Rancher allows restore from [saved snapshots](#restoring-a-cluster-from-a-snapshot) or if you don't have any snapshots, you can still [restore etcd](#recovering-etcd-without-a-snapshot).
 
-As of Rancher v2.4.0, clusters can also be restored to a prior Kubernetes version and cluster configuration.
+Clusters can also be restored to a prior Kubernetes version and cluster configuration.
 
 This section covers the following topics:
 
@@ -29,11 +27,6 @@ The list of all available snapshots for the cluster is available.
 ## Restoring a Cluster from a Snapshot
 
 If your Kubernetes cluster is broken, you can restore the cluster from a snapshot.
-
-Restores changed in Rancher v2.4.0.
-
-{{% tabs %}}
-{{% tab "Rancher v2.4.0+" %}}
 
 Snapshots are composed of the cluster data in etcd, the Kubernetes version, and the cluster configuration in the `cluster.yml.` These components allow you to select from the following options when restoring a cluster from a snapshot:
 
@@ -56,27 +49,6 @@ When rolling back to a prior Kubernetes version, the [upgrade strategy options](
 5. Click **Save**.
 
 **Result:** The cluster will go into `updating` state and the process of restoring the `etcd` nodes from the snapshot will start. The cluster is restored when it returns to an `active` state.
-
-{{% /tab %}}
-{{% tab "Rancher prior to v2.4.0" %}}
-
-> **Prerequisites:** 
->
-> - Make sure your etcd nodes are healthy. If you are restoring a cluster with unavailable etcd nodes, it's recommended that all etcd nodes are removed from Rancher before attempting to restore. For clusters in which Rancher used node pools to provision [nodes in an infrastructure provider]({{<baseurl>}}/rancher/v2.x/en/cluster-provisioning/rke-clusters/node-pools/), new etcd nodes will automatically be created. For [custom clusters]({{<baseurl>}}/rancher/v2.x/en/cluster-provisioning/rke-clusters/custom-nodes/), please ensure that you add new etcd nodes to the cluster.
-> - To restore snapshots from S3, the cluster needs to be configured to [take recurring snapshots on S3.]({{<baseurl>}}/rancher/v2.x/en/cluster-admin/backing-up-etcd/#configuring-recurring-snapshots)
-
-1. In the **Global** view, navigate to the cluster that you want to restore from a snapshot.
-
-2. Click the **&#8942; > Restore Snapshot**.
-
-3. Select the snapshot that you want to use for restoring your cluster from the dropdown of available snapshots.
-
-4. Click **Save**. 
-
-**Result:** The cluster will go into `updating` state and the process of restoring the `etcd` nodes from the snapshot will start. The cluster is restored when it returns to an `active` state.
-
-{{% /tab %}}
-{{% /tabs %}}
 
 ## Recovering etcd without a Snapshot
 

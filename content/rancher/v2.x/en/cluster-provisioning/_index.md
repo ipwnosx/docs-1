@@ -71,36 +71,7 @@ You can bring any nodes you want to Rancher and use them to create a cluster.
 
 These nodes include on-prem bare metal servers, cloud-hosted virtual machines, or on-prem virtual machines.
 
-# Importing Existing Clusters
-
-_Available from Rancher v2.0.x-v2.4.x_
-
-In this type of cluster, Rancher connects to a Kubernetes cluster that has already been set up. Therefore, Rancher does not provision Kubernetes, but only sets up the Rancher agents to communicate with the cluster.
-
-Note that Rancher does not automate the provisioning, scaling, or upgrade of imported clusters. Other Rancher features, including management of cluster, role-based access control, policy, and workloads, are available for imported clusters.
-
-For all imported Kubernetes clusters except for K3s clusters, the configuration of an imported cluster still has to be edited outside of Rancher. Some examples of editing the cluster include adding and removing nodes, upgrading the Kubernetes version, and changing Kubernetes component parameters.
-
-In Rancher v2.4, it became possible to import a K3s cluster and upgrade Kubernetes by editing the cluster in the Rancher UI.
-
-For more information, refer to the section on [importing existing clusters.]({{<baseurl>}}/rancher/v2.x/en/cluster-provisioning/imported-clusters/)
-
-### Importing and Editing K3s Clusters
-
-_Available as of Rancher v2.4.0_
-
-[K3s]({{<baseurl>}}/k3s/latest/en/) is a lightweight, fully compliant Kubernetes distribution. K3s Kubernetes clusters can now be imported into Rancher.
-
-When a K3s cluster is imported, Rancher will recognize it as K3s, and the Rancher UI will expose the following features in addition to the functionality for other imported clusters:
-
-- The ability to upgrade the K3s version
-- The ability to see a read-only version of the K3s cluster's configuration arguments and environment variables used to launch each node in the cluster.
-
-For more information, refer to the section on [imported K3s clusters.]({{<baseurl>}}/rancher/v2.x/en/cluster-provisioning/imported-clusters/)
-
 # Registering Existing Clusters
-
-_Available as of v2.5_
 
 The cluster registration feature replaces the feature to import clusters.
 

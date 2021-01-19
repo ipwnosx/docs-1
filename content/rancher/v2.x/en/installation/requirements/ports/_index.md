@@ -55,7 +55,7 @@ The following tables break down the port requirements for inbound and outbound t
 | Protocol | Port | Source | Description
 |-----|-----|----------------|---|
 | TCP      | 80   | Load balancer/proxy that does external SSL termination                                                                                                                                | Rancher UI/API when external SSL termination is used |
-| TCP      | 443  | <ul><li>server nodes</li><li>agent nodes</li><li>hosted/imported Kubernetes</li><li>any source that needs to be able to use the Rancher UI or API</li></ul> | Rancher agent, Rancher UI/API, kubectl               |
+| TCP      | 443  | <ul><li>server nodes</li><li>agent nodes</li><li>hosted/registered Kubernetes</li><li>any source that needs to be able to use the Rancher UI or API</li></ul> | Rancher agent, Rancher UI/API, kubectl               |
 | TCP | 6443 | K3s server nodes | Kubernetes API
 | UDP | 8472 | K3s server and agent nodes | Required only for Flannel VXLAN.
 | TCP | 10250 | K3s server and agent nodes | kubelet
@@ -139,7 +139,7 @@ If you wish to utilize the metrics server, you will need to open port 10250 on e
 | TCP | 2380 | RancherD/RKE2 server nodes | etcd peer port
 | TCP | 30000-32767 | RancherD/RKE2 server and agent nodes | NodePort port range
 | HTTP | 8080 | Load balancer/proxy that does external SSL termination | Rancher UI/API when external SSL termination is used |
-| HTTPS | 8443 | <ul><li>hosted/imported Kubernetes</li><li>any source that needs to be able to use the Rancher UI or API</li></ul> | Rancher agent, Rancher UI/API, kubectl. Not needed if you have LB doing TLS termination. |
+| HTTPS | 8443 | <ul><li>hosted/registered Kubernetes</li><li>any source that needs to be able to use the Rancher UI or API</li></ul> | Rancher agent, Rancher UI/API, kubectl. Not needed if you have LB doing TLS termination. |
 
 Typically all outbound traffic is allowed.
 {{% /accordion %}}
@@ -155,7 +155,7 @@ The following tables break down the port requirements for Rancher nodes, for inb
 | Protocol | Port | Source | Description
 |-----|-----|----------------|---|
 | TCP | 80 | Load balancer/proxy that does external SSL termination | Rancher UI/API when external SSL termination is used
-| TCP | 443 | <ul><li>hosted/imported Kubernetes</li><li>any source that needs to be able to use the Rancher UI or API</li></ul> | Rancher agent, Rancher UI/API, kubectl
+| TCP | 443 | <ul><li>hosted/registered Kubernetes</li><li>any source that needs to be able to use the Rancher UI or API</li></ul> | Rancher agent, Rancher UI/API, kubectl
 
 <figcaption>Outbound Rules for Rancher Node</figcaption>
 
@@ -223,7 +223,7 @@ Note: Registered clusters were called imported clusters prior to Rancher v2.5.
 
 {{% accordion label="Click to expand" %}}
 
-The following table depicts the port requirements for [imported clusters]({{<baseurl>}}/rancher/v2.x/en/cluster-provisioning/imported-clusters/).
+The following table depicts the port requirements for [registered clusters]({{<baseurl>}}/rancher/v2.x/en/cluster-provisioning/imported-clusters/).
 
 {{< ports-imported-hosted >}}
 

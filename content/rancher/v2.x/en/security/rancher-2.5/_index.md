@@ -1,5 +1,6 @@
 ---
-title: Rancher v2.5
+title: Self-Assessment and Hardening Guides for Rancher v2.5
+shortTitle: Rancher v2.5 Guides
 weight: 1
 ---
 
