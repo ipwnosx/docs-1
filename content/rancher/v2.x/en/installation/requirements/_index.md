@@ -27,7 +27,7 @@ The Rancher UI works best in Firefox or Chrome.
 
 Rancher should work with any modern Linux distribution.
 
-For details on which OS and Docker versions were tested with each Rancher version, refer to the [support maintenance terms.](https://rancher.com/support-maintenance-terms/)
+For details on which OS, Docker, and Kubernetes versions were tested with each Rancher version, refer to the [support maintenance terms.](https://rancher.com/support-maintenance-terms/)
 
 All supported operating systems are 64-bit x86.
 
