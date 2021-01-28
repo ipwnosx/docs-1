@@ -28,7 +28,7 @@ Rancher should work with any modern Linux distribution.
 
 Docker is required for nodes that will run K3s or RKE Kubernetes clusters. It is not required for RancherD installs.
 
-For details on which OS and Docker versions were tested with each Rancher version, refer to the [support maintenance terms.](https://rancher.com/support-maintenance-terms/)
+For details on which OS, Docker, and Kubernetes versions were tested with each Rancher version, refer to the [support maintenance terms.](https://rancher.com/support-maintenance-terms/)
 
 All supported operating systems are 64-bit x86.
 
