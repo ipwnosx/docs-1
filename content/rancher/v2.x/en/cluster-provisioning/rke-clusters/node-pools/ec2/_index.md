@@ -19,7 +19,6 @@ Then you will create an EC2 cluster in Rancher, and when configuring the new clu
   - [Example IAM Policy to allow encrypted EBS volumes](#example-iam-policy-to-allow-encrypted-ebs-volumes)
 - **IAM Policy added as Permission** to the user. See [Amazon Documentation: Adding Permissions to a User (Console)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html#users_change_permissions-add-console) how to attach it to an user.
 
-
 # Creating an EC2 Cluster
 
 The steps to create a cluster differ based on your Rancher version.
@@ -95,7 +94,8 @@ After creating your cluster, you can access it through the Rancher UI. As a best
                 "ec2:CreateKeyPair",
                 "ec2:CreateSecurityGroup",
                 "ec2:CreateTags",
-                "ec2:DeleteKeyPair"
+                "ec2:DeleteKeyPair",
+                "ec2:ModifyInstanceMetadataOptions"
             ],
             "Resource": "*"
         },
@@ -147,7 +147,8 @@ After creating your cluster, you can access it through the Rancher UI. As a best
                 "ec2:CreateKeyPair",
                 "ec2:CreateSecurityGroup",
                 "ec2:CreateTags",
-                "ec2:DeleteKeyPair"
+                "ec2:DeleteKeyPair",
+                "ec2:ModifyInstanceMetadataOptions"
             ],
             "Resource": "*"
         },
