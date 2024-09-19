@@ -7,13 +7,13 @@ Rancher Docs
 
 The Rancher Manager* documentation is moving. Please file any issues or pull requests at https://github.com/rancher/rancher-docs instead.
 
-* = content/rancher
+\* = content/rancher
 
 ### K3s update
 
 The K3s* documentation is moving. Please file any issues or pull requests at https://github.com/k3s-io/docs instead.
 
-* = content/k3s
+\* = content/k3s
 
 ## Running for development/editing
 
@@ -48,7 +48,7 @@ Windows
 
 License
 ========
-Copyright (c) 2014-2022 [Rancher Labs, Inc.](https://rancher.com)
+Copyright (c) 2014-2024 [Rancher Labs, Inc.](https://rancher.com)
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
